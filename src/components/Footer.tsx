@@ -46,7 +46,7 @@ const Footer: React.FC = () => {
             MLN131
           </span>
           <span className="text-sm text-[#3a3f8f]/70">
-            © {new Date().getFullYear()} MLN131. All rights reserved.
+            © {new Date().getFullYear()} HCM202 - SE1725. All rights reserved.
           </span>
         </div>
         <div className="flex flex-col items-center gap-2">
