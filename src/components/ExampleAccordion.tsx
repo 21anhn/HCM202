@@ -6,24 +6,34 @@ import { ChevronDown } from "lucide-react";
 
 const aiApplications = [
   {
-    title: "Tạo Quiz tự động",
+    title: "Sinh bộ Quiz theo đề cương học phần",
     content:
-      "AI được sử dụng để tự động tạo ra bộ 15 câu hỏi trắc nghiệm cùng với gợi ý và giải thích chi tiết, giúp đội ngũ phát triển xây dựng nội dung ôn tập nhanh chóng và hiệu quả hơn.",
+      "AI tạo nhanh 15+ câu trắc nghiệm kèm gợi ý và giải thích, bao phủ các chủ đề: cơ sở hình thành tư tưởng Hồ Chí Minh; độc lập dân tộc gắn liền CNXH; đại đoàn kết toàn dân tộc; xây dựng Đảng & Nhà nước; đạo đức cách mạng; vận dụng thực tiễn và liên hệ hiện nay.",
   },
   {
-    title: "Chatbot hỏi đáp sử dụng Gemini",
+    title: "Chatbot hỏi–đáp giáo trình & văn kiện",
     content:
-      "Tích hợp mô hình AI Gemini để xây dựng chatbot thông minh. Chatbot này có khả năng trả lời các câu hỏi về giáo trình bằng cả giọng nói (Text-to-Speech) và văn bản, mang lại trải nghiệm tương tác tự nhiên và tiện lợi cho người học.",
+      "Chatbot hỗ trợ tra cứu khái niệm, luận điểm then chốt và trích dẫn tiêu biểu (như “cần, kiệm, liêm, chính, chí công vô tư”, “giặc nội xâm”); có thể trả lời dạng văn bản và giọng nói (Text-to-Speech) để tăng tương tác tự học.",
   },
   {
-    title: "Tối ưu hóa quy trình phát triển",
+    title: "Tóm tắt & bản đồ khái niệm chương mục",
     content:
-      "Các công cụ AI giúp tối ưu hóa nhiều khâu trong quá trình phát triển website, từ việc tạo nội dung, thiết kế giao diện đến tối ưu code, giúp website được hoàn thiện nhanh chóng và chất lượng cao.",
+      "AI giúp tóm tắt mỗi chương, tạo “mind map/logic map” thể hiện mối liên hệ giữa các luận điểm: từ mục tiêu độc lập dân tộc gắn CNXH đến phương thức thực hiện qua đại đoàn kết, xây dựng Đảng trong sạch, Nhà nước của dân, do dân, vì dân.",
   },
   {
-    title: "Cá nhân hóa trải nghiệm học tập",
+    title: "Phân tích đạo đức cách mạng & tự rèn luyện",
     content:
-      "Website sử dụng AI để gợi ý nội dung phù hợp với người dùng. Các hiệu ứng động và tương tác mượt mà (như fade-in, parallax) được tạo ra để cá nhân hóa trải nghiệm, tăng sự tập trung và hứng thú của người học.",
+      "Tạo checklist tự đánh giá theo các phẩm chất: cần–kiệm–liêm–chính–chí công vô tư; cơ chế nhắc nhở thói quen tốt; gợi ý tình huống/ví dụ thực tế để người học luyện phản biện và liên hệ bản thân.",
+  },
+  {
+    title: "Vận dụng vào thực tiễn hiện nay",
+    content:
+      "Gợi ý tình huống học thuật/thực tiễn (chống tham nhũng, nêu gương cán bộ, phát huy dân chủ, đoàn kết quốc tế) để người học áp dụng phương pháp tư duy và nguyên tắc của tư tưởng Hồ Chí Minh vào bối cảnh đổi mới.",
+  },
+  {
+    title: "Cá nhân hóa lộ trình ôn tập",
+    content:
+      "Theo dõi kết quả làm quiz để đề xuất phần đọc bổ sung, flashcards trọng tâm từng mục (đại đoàn kết, vai trò Đảng, Nhà nước pháp quyền XHCN), giúp ôn thi hiệu quả và có hệ thống.",
   },
 ];
 
@@ -37,7 +47,7 @@ const ExampleAccordion: React.FC = () => {
         viewport={{ once: true }}
         transition={{ duration: 0.7 }}
       >
-        Ứng dụng AI trong website này
+        Ứng dụng AI trong môn Tư tưởng Hồ Chí Minh
       </motion.h2>
       <motion.p
         className="text-sm md:text-base text-gray-600 mb-7 text-center italic"
@@ -46,8 +56,7 @@ const ExampleAccordion: React.FC = () => {
         viewport={{ once: true }}
         transition={{ duration: 0.7, delay: 0.2 }}
       >
-        *Lưu ý: Nội dung trả lời và quiz được tạo dựa trên Giáo trình Chủ nghĩa
-        xã hội khoa học năm 2021.
+        *Nội dung bám sát đề cương và giáo trình môn Tư tưởng Hồ Chí Minh.*
       </motion.p>
       <Accordion.Root
         type="single"

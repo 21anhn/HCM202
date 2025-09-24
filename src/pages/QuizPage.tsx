@@ -16,494 +16,184 @@ interface QuizQuestion {
 const questions: QuizQuestion[] = [
   {
     questionNumber: 1,
-    question: "Dân chủ xã hội chủ nghĩa là nền dân chủ như thế nào?",
+    question:
+      "Theo Luật Phòng, chống tham nhũng năm 2005, tham nhũng được định nghĩa là gì?",
     imageUrl: null,
     answerOptions: [
-      {
-        text: "Nền dân chủ tuyệt đối, không có giới hạn nào",
-        rationale:
-          "Không có nền dân chủ nào là tuyệt đối; mọi nền dân chủ đều cần có pháp luật để duy trì trật tự và công bằng.",
-        isCorrect: false,
-      },
-      {
-        text: "Nền dân chủ cho mọi giai cấp",
-        rationale:
-          "Dân chủ xã hội chủ nghĩa được thực hiện để phục vụ lợi ích của đa số quần chúng lao động, không phải cho mọi giai cấp.",
-        isCorrect: false,
-      },
-      {
-        text: "Nền dân chủ rộng rãi cho quần chúng lao động, do nhân dân làm chủ",
-        rationale:
-          "Đây là bản chất của dân chủ xã hội chủ nghĩa, nơi quyền lực thực sự thuộc về nhân dân, phục vụ lợi ích của họ.",
-        isCorrect: true,
-      },
-      {
-        text: "Nền dân chủ chỉ dành cho những người có quyền lực",
-        rationale:
-          "Nền dân chủ chỉ dành cho một nhóm nhỏ người có quyền lực là đặc điểm của nền dân chủ tư sản, không phải dân chủ xã hội chủ nghĩa.",
-        isCorrect: false,
-      },
+      { text: "Hành vi lợi dụng mối quan hệ xã hội để mưu cầu lợi ích cá nhân", rationale: "Sai.", isCorrect: false },
+      { text: "Hành vi của người có chức vụ, quyền hạn đã lợi dụng chức vụ, quyền hạn đó vì vụ lợi", rationale: "Đúng. Đây là định nghĩa chính thức.", isCorrect: true },
+      { text: "Hành vi làm thất thoát ngân sách nhà nước", rationale: "Sai.", isCorrect: false },
+      { text: "Hành vi quan liêu, cửa quyền", rationale: "Sai.", isCorrect: false },
     ],
-    hint: "Hãy nghĩ về bản chất 'vì nhân dân' của nền dân chủ này.",
+    hint: "Tham nhũng gắn liền với người có chức vụ, quyền hạn.",
   },
   {
     questionNumber: 2,
-    question: "Mục tiêu cuối cùng của dân chủ xã hội chủ nghĩa là gì?",
+    question: "Hồ Chí Minh coi tham ô, lãng phí, quan liêu là gì?",
     imageUrl: null,
     answerOptions: [
-      {
-        text: "Tập trung quyền lực vào tay một nhóm nhỏ",
-        rationale:
-          "Mục tiêu này đi ngược lại nguyên lý của dân chủ xã hội chủ nghĩa là quyền lực thuộc về nhân dân.",
-        isCorrect: false,
-      },
-      {
-        text: "Phân chia quyền lực giữa các giai cấp",
-        rationale:
-          "Dân chủ xã hội chủ nghĩa không phân chia quyền lực, mà là đảm bảo quyền lực thuộc về nhân dân.",
-        isCorrect: false,
-      },
-      {
-        text: "Đưa nhân dân lên vị trí làm chủ xã hội, làm chủ chính bản thân mình",
-        rationale:
-          "Đây là mục tiêu cao nhất của dân chủ xã hội chủ nghĩa, nhằm giải phóng và phát huy tiềm năng của con người.",
-        isCorrect: true,
-      },
-      {
-        text: "Chỉ bảo vệ quyền lợi của một bộ phận dân cư",
-        rationale:
-          "Dân chủ xã hội chủ nghĩa hướng tới bảo vệ quyền lợi của đại đa số nhân dân, không phải chỉ một bộ phận nhỏ.",
-        isCorrect: false,
-      },
+      { text: "Sai lầm trong quản lý", rationale: "Sai.", isCorrect: false },
+      { text: "Hệ quả tất yếu của phát triển kinh tế", rationale: "Sai.", isCorrect: false },
+      { text: "Giặc nội xâm", rationale: "Đúng.", isCorrect: true },
+      { text: "Thói quen xấu của cán bộ", rationale: "Sai.", isCorrect: false },
     ],
-    hint: "Mục tiêu này liên quan đến việc trao quyền và giải phóng con người.",
+    hint: "Người gọi đây là 'giặc'.",
   },
   {
     questionNumber: 3,
-    question: "Đặc điểm cơ bản của Nhà nước xã hội chủ nghĩa là gì?",
+    question: "Theo tư tưởng Hồ Chí Minh, cán bộ nhà nước phải được xem là gì?",
     imageUrl: null,
     answerOptions: [
-      {
-        text: "Nhà nước do một cá nhân lãnh đạo tuyệt đối",
-        rationale:
-          "Nhà nước xã hội chủ nghĩa hoạt động dựa trên nguyên tắc tập thể lãnh đạo, không phải cá nhân độc đoán.",
-        isCorrect: false,
-      },
-      {
-        text: "Nhà nước bảo vệ lợi ích của giai cấp bóc lột",
-        rationale:
-          "Nhà nước xã hội chủ nghĩa được thành lập để bảo vệ lợi ích của nhân dân lao động, chống lại sự bóc lột.",
-        isCorrect: false,
-      },
-      {
-        text: "Nhà nước mang bản chất giai cấp công nhân",
-        rationale:
-          "Nhà nước xã hội chủ nghĩa được thành lập và lãnh đạo bởi giai cấp công nhân, đại diện cho lợi ích của đa số nhân dân lao động.",
-        isCorrect: true,
-      },
-      {
-        text: "Nhà nước không có sự phân công, phối hợp quyền lực",
-        rationale:
-          "Nhà nước xã hội chủ nghĩa có sự phân công rõ ràng về quyền lực để đảm bảo hoạt động hiệu quả.",
-        isCorrect: false,
-      },
+      { text: "Người quản lý nhân dân", rationale: "Sai.", isCorrect: false },
+      { text: "Người chủ của dân", rationale: "Sai.", isCorrect: false },
+      { text: "Người thay mặt Đảng điều hành xã hội", rationale: "Sai.", isCorrect: false },
+      { text: "Công bộc của dân", rationale: "Đúng.", isCorrect: true },
     ],
-    hint: "Đặc điểm này liên quan đến giai cấp lãnh đạo và mục tiêu của nhà nước.",
+    hint: "Từ khóa: công bộc.",
   },
   {
     questionNumber: 4,
-    question:
-      "Nhà nước xã hội chủ nghĩa được tổ chức và hoạt động dựa trên nguyên tắc nào?",
+    question: "Tại sao tham nhũng được coi là nguy cơ trực tiếp đe dọa sự tồn vong của Đảng và chế độ?",
     imageUrl: null,
     answerOptions: [
-      {
-        text: "Nguyên tắc quyền lực tập trung vào một nhóm thiểu số",
-        rationale:
-          "Nguyên tắc này trái ngược với bản chất của nhà nước xã hội chủ nghĩa, nơi quyền lực thuộc về nhân dân.",
-        isCorrect: false,
-      },
-      {
-        text: "Nguyên tắc quyền lực nhà nước là thống nhất, có sự phân công, phối hợp và kiểm soát",
-        rationale:
-          "Đây là nguyên tắc cơ bản trong tổ chức và hoạt động của Nhà nước pháp quyền xã hội chủ nghĩa, đảm bảo hiệu lực, hiệu quả của quyền lực nhà nước.",
-        isCorrect: true,
-      },
-      {
-        text: "Nguyên tắc quyền lực nhà nước bị phân tán, không thống nhất",
-        rationale:
-          "Sự phân tán quyền lực có thể dẫn đến sự hỗn loạn và mất kiểm soát, không phù hợp với mục tiêu của nhà nước xã hội chủ nghĩa.",
-        isCorrect: false,
-      },
-      {
-        text: "Nguyên tắc quyền lực nhà nước thuộc về một cá nhân",
-        rationale:
-          "Nguyên tắc này là độc đoán và chuyên chế, không phù hợp với bản chất dân chủ của nhà nước xã hội chủ nghĩa.",
-        isCorrect: false,
-      },
+      { text: "Vì làm giảm uy tín của cán bộ cấp cao", rationale: "Sai.", isCorrect: false },
+      { text: "Vì chỉ gây thất thoát ngân sách", rationale: "Sai.", isCorrect: false },
+      { text: "Vì làm xói mòn niềm tin của nhân dân, làm mục ruỗng bộ máy, uy hiếp tính chính danh của chế độ", rationale: "Đúng.", isCorrect: true },
+      { text: "Vì chỉ xuất hiện ở một số lĩnh vực nhạy cảm", rationale: "Sai.", isCorrect: false },
     ],
-    hint: "Nguyên tắc này nhằm đảm bảo sự thống nhất và kiểm soát quyền lực.",
+    hint: "Liên hệ tới niềm tin nhân dân.",
   },
   {
     questionNumber: 5,
-    question: "Nhà nước pháp quyền xã hội chủ nghĩa có đặc trưng gì?",
+    question: "Một trong những yêu cầu cấp bách để phòng, chống tham nhũng theo tư tưởng Hồ Chí Minh là gì?",
     imageUrl: null,
     answerOptions: [
-      {
-        text: "Quản lý xã hội bằng mệnh lệnh và sự độc đoán",
-        rationale:
-          "Việc quản lý xã hội bằng mệnh lệnh và sự độc đoán không phải là đặc trưng của nhà nước pháp quyền, vốn nhấn mạnh việc quản lý bằng pháp luật.",
-        isCorrect: false,
-      },
-      {
-        text: "Hiến pháp và pháp luật giữ vị trí tối thượng trong điều chỉnh các quan hệ xã hội",
-        rationale:
-          "Đây là đặc trưng cơ bản của nhà nước pháp quyền, nơi luật pháp là công cụ quản lý chủ yếu và cao nhất.",
-        isCorrect: true,
-      },
-      {
-        text: "Nhà nước đứng trên và ngoài pháp luật",
-        rationale:
-          "Trong nhà nước pháp quyền, bản thân nhà nước cũng phải tuân thủ pháp luật, không thể đứng trên hoặc ngoài pháp luật.",
-        isCorrect: false,
-      },
-      {
-        text: "Chỉ bảo vệ quyền lợi cho giai cấp thống trị",
-        rationale:
-          "Nhà nước pháp quyền xã hội chủ nghĩa bảo vệ quyền con người, quyền công dân của tất cả mọi người, không chỉ riêng giai cấp thống trị.",
-        isCorrect: false,
-      },
+      { text: "Chỉ dựa vào cơ quan thanh tra, kiểm toán", rationale: "Sai.", isCorrect: false },
+      { text: "Huy động nhân dân tham gia giám sát, bảo vệ người tố cáo", rationale: "Đúng.", isCorrect: true },
+      { text: "Chỉ tăng cường xử lý bằng pháp luật", rationale: "Sai.", isCorrect: false },
+      { text: "Chỉ tập trung vào việc phòng ngừa trong cơ quan trung ương", rationale: "Sai.", isCorrect: false },
     ],
-    hint: "Hãy nghĩ về vai trò của luật pháp trong nhà nước pháp quyền.",
+    hint: "Vai trò nhân dân là then chốt.",
   },
   {
     questionNumber: 6,
-    question:
-      "Vai trò của Đảng Cộng sản Việt Nam trong Nhà nước pháp quyền xã hội chủ nghĩa là gì?",
+    question: "Theo Hồ Chí Minh, cán bộ, đảng viên cần có những yêu cầu gì để xây dựng Nhà nước trong sạch, vững mạnh?",
     imageUrl: null,
     answerOptions: [
-      {
-        text: "Đảng trực tiếp quản lý và điều hành mọi hoạt động của nhà nước",
-        rationale:
-          "Đảng lãnh đạo nhà nước, nhưng không trực tiếp điều hành, việc điều hành là nhiệm vụ của các cơ quan nhà nước.",
-        isCorrect: false,
-      },
-      {
-        text: "Đảng là người đứng trên pháp luật, không chịu sự ràng buộc",
-        rationale:
-          "Trong Nhà nước pháp quyền xã hội chủ nghĩa, Đảng lãnh đạo, đồng thời hoạt động trong khuôn khổ Hiến pháp và pháp luật.",
-        isCorrect: false,
-      },
-      {
-        text: "Đảng lãnh đạo nhà nước và xã hội, không phải là cơ quan quyền lực nhà nước",
-        rationale:
-          "Đây là vai trò đúng của Đảng Cộng sản Việt Nam theo Hiến pháp, Đảng lãnh đạo, còn nhà nước thực hiện quyền lực.",
-        isCorrect: true,
-      },
-      {
-        text: "Đảng chỉ có vai trò tư vấn, không có quyền quyết định",
-        rationale:
-          "Đảng giữ vai trò lãnh đạo, có quyền quyết định những vấn đề trọng đại của đất nước, không chỉ là tư vấn.",
-        isCorrect: false,
-      },
+      { text: "Giữ đạo đức cách mạng, trung thành tuyệt đối, tu dưỡng chống chủ nghĩa cá nhân", rationale: "Đúng.", isCorrect: true },
+      { text: "Chỉ cần tuân thủ pháp luật", rationale: "Sai.", isCorrect: false },
+      { text: "Tập trung phát triển kinh tế, không quan tâm đạo đức", rationale: "Sai.", isCorrect: false },
+      { text: "Thường xuyên đi công tác nước ngoài", rationale: "Sai.", isCorrect: false },
     ],
-    hint: "Vai trò của Đảng được quy định trong Hiến pháp của Việt Nam.",
+    hint: "Cần, kiệm, liêm, chính, chí công vô tư.",
   },
   {
     questionNumber: 7,
-    question:
-      "Dân chủ trong lĩnh vực chính trị ở Việt Nam được thể hiện như thế nào?",
+    question: "Hồ Chí Minh coi bệnh đặc quyền, đặc lợi, tham ô, lãng phí, quan liêu là gì?",
     imageUrl: null,
     answerOptions: [
-      {
-        text: "Chỉ có một vài người dân được tham gia bầu cử",
-        rationale:
-          "Việc bầu cử là quyền của tất cả công dân, không giới hạn ở một vài người.",
-        isCorrect: false,
-      },
-      {
-        text: "Quyền lực nhà nước chỉ thuộc về các quan chức",
-        rationale:
-          "Hiến pháp Việt Nam quy định quyền lực nhà nước thuộc về nhân dân.",
-        isCorrect: false,
-      },
-      {
-        text: "Quyền bầu cử và ứng cử của công dân được đảm bảo",
-        rationale:
-          "Đây là một trong những biểu hiện quan trọng nhất của dân chủ chính trị, đảm bảo quyền làm chủ của nhân dân.",
-        isCorrect: true,
-      },
-      {
-        text: "Không có quyền tự do ngôn luận và báo chí",
-        rationale:
-          "Hiến pháp Việt Nam quy định công dân có quyền tự do ngôn luận và báo chí.",
-        isCorrect: false,
-      },
+      { text: "Vấn đề nhỏ cần quan tâm", rationale: "Sai.", isCorrect: false },
+      { text: "Giặc nội xâm, những xấu xa của chế độ cũ", rationale: "Đúng.", isCorrect: true },
+      { text: "Chỉ là sai lầm hành chính", rationale: "Sai.", isCorrect: false },
+      { text: "Không đáng lo ngại", rationale: "Sai.", isCorrect: false },
     ],
-    hint: "Hãy nghĩ về những quyền cơ bản của công dân trong hệ thống chính trị.",
+    hint: "Người gọi đây là giặc nội xâm.",
   },
   {
     questionNumber: 8,
-    question:
-      "Trong Nhà nước pháp quyền xã hội chủ nghĩa Việt Nam, cơ quan nào thực hiện quyền lập pháp?",
+    question: "Trong công tác xây dựng Đảng hiện nay, những vấn đề nào cần đặc biệt quan tâm?",
     imageUrl: null,
     answerOptions: [
-      {
-        text: "Chính phủ",
-        rationale:
-          "Chính phủ là cơ quan thực hiện quyền hành pháp, quản lý điều hành đất nước.",
-        isCorrect: false,
-      },
-      {
-        text: "Tòa án Nhân dân Tối cao",
-        rationale:
-          "Tòa án Nhân dân Tối cao là cơ quan thực hiện quyền tư pháp, xét xử.",
-        isCorrect: false,
-      },
-      {
-        text: "Quốc hội",
-        rationale:
-          "Quốc hội là cơ quan duy nhất thực hiện quyền lập pháp, ban hành luật và Hiến pháp.",
-        isCorrect: true,
-      },
-      {
-        text: "Ủy ban nhân dân các cấp",
-        rationale:
-          "Ủy ban nhân dân các cấp là cơ quan hành chính nhà nước ở địa phương.",
-        isCorrect: false,
-      },
+      { text: "Chống suy thoái chính trị, đạo đức, lối sống; công tác cán bộ và kiểm soát nội bộ", rationale: "Đúng.", isCorrect: true },
+      { text: "Chỉ quan tâm kinh tế", rationale: "Sai.", isCorrect: false },
+      { text: "Tập trung phát triển công nghệ", rationale: "Sai.", isCorrect: false },
+      { text: "Hạn chế kiểm tra giám sát", rationale: "Sai.", isCorrect: false },
     ],
-    hint: "Cơ quan này đại diện cho ý chí và nguyện vọng của nhân dân trên toàn quốc.",
+    hint: "Đảng nhấn mạnh chính trị, đạo đức, kiểm soát.",
   },
   {
     questionNumber: 9,
-    question:
-      "Nhà nước pháp quyền xã hội chủ nghĩa Việt Nam bảo đảm điều gì cho người dân?",
+    question: "Khi xây dựng Nhà nước ngang tầm nhiệm vụ trong giai đoạn cách mạng mới, cần đảm bảo những nội dung nào?",
     imageUrl: null,
     answerOptions: [
-      {
-        text: "Bảo đảm quyền lợi cho một nhóm đặc quyền",
-        rationale:
-          "Nhà nước xã hội chủ nghĩa hướng đến bảo vệ quyền lợi của tất cả nhân dân, không chỉ một nhóm đặc quyền.",
-        isCorrect: false,
-      },
-      {
-        text: "Bảo đảm quyền con người, quyền công dân trên cơ sở Hiến pháp và pháp luật",
-        rationale:
-          "Đây là nguyên tắc cơ bản và là mục tiêu quan trọng của Nhà nước pháp quyền xã hội chủ nghĩa Việt Nam.",
-        isCorrect: true,
-      },
-      {
-        text: "Không cần tôn trọng quyền lợi của người dân",
-        rationale:
-          "Nguyên tắc này hoàn toàn trái ngược với bản chất của Nhà nước pháp quyền xã hội chủ nghĩa.",
-        isCorrect: false,
-      },
-      {
-        text: "Chỉ bảo đảm quyền lợi khi có lợi cho nhà nước",
-        rationale:
-          "Nhà nước pháp quyền xã hội chủ nghĩa phải luôn bảo vệ quyền lợi của người dân, bất kể có lợi cho nhà nước hay không.",
-        isCorrect: false,
-      },
+      { text: "Chỉ tập trung phát triển kinh tế", rationale: "Sai.", isCorrect: false },
+      { text: "Xây dựng Nhà nước pháp quyền XHCN trong sạch, vững mạnh; hoàn thiện pháp luật và kiểm soát quyền lực", rationale: "Đúng.", isCorrect: true },
+      { text: "Không cần minh bạch thủ tục hành chính", rationale: "Sai.", isCorrect: false },
+      { text: "Giảm quyền dân tham gia", rationale: "Sai.", isCorrect: false },
     ],
-    hint: "Hãy nghĩ về những gì mà nhà nước phải cung cấp và bảo vệ cho mọi công dân.",
+    hint: "Pháp quyền, pháp luật, kiểm soát quyền lực.",
   },
   {
     questionNumber: 10,
-    question:
-      "Mối quan hệ giữa dân chủ xã hội chủ nghĩa và Nhà nước xã hội chủ nghĩa là gì?",
+    question: "Tham nhũng xảy ra ở đâu và do ai thực hiện?",
     imageUrl: null,
     answerOptions: [
-      {
-        text: "Dân chủ xã hội chủ nghĩa không liên quan đến Nhà nước xã hội chủ nghĩa",
-        rationale:
-          "Mối quan hệ giữa hai yếu tố này rất chặt chẽ, không thể tách rời.",
-        isCorrect: false,
-      },
-      {
-        text: "Nhà nước là công cụ để thực thi và phát huy dân chủ xã hội chủ nghĩa",
-        rationale:
-          "Đây là mối quan hệ đúng, Nhà nước là phương tiện để hiện thực hóa các quyền dân chủ của nhân dân.",
-        isCorrect: true,
-      },
-      {
-        text: "Dân chủ làm suy yếu quyền lực của nhà nước",
-        rationale:
-          "Ngược lại, dân chủ lành mạnh sẽ giúp củng cố quyền lực của nhà nước, làm cho nhà nước hoạt động hiệu quả hơn.",
-        isCorrect: false,
-      },
-      {
-        text: "Nhà nước là mục đích cuối cùng của dân chủ",
-        rationale:
-          "Nhà nước chỉ là phương tiện để đạt được dân chủ, dân chủ mới là mục đích cuối cùng.",
-        isCorrect: false,
-      },
+      { text: "Ở mọi nơi, do tất cả công dân", rationale: "Sai.", isCorrect: false },
+      { text: "Chỉ ở cơ quan nhà nước, do người có chức vụ, quyền hạn lợi dụng chức vụ, quyền hạn", rationale: "Đúng.", isCorrect: true },
+      { text: "Chỉ trong doanh nghiệp tư nhân", rationale: "Sai.", isCorrect: false },
+      { text: "Chỉ xảy ra trong các cơ quan quốc tế", rationale: "Sai.", isCorrect: false },
     ],
-    hint: "Một bên là mục tiêu, một bên là phương tiện để đạt được mục tiêu đó.",
+    hint: "Tham nhũng gắn với quyền lực.",
   },
   {
     questionNumber: 11,
-    question:
-      "Theo giáo trình, một trong những nguyên tắc cốt lõi của việc xây dựng Nhà nước pháp quyền xã hội chủ nghĩa Việt Nam là gì?",
+    question: "Vì sao Hồ Chí Minh coi tham ô, lãng phí, quan liêu là giặc nội xâm?",
     imageUrl: null,
     answerOptions: [
-      {
-        text: "Độc quyền pháp luật",
-        rationale:
-          "Nguyên tắc này đi ngược lại với tinh thần của nhà nước pháp quyền, nơi pháp luật áp dụng cho tất cả mọi người.",
-        isCorrect: false,
-      },
-      {
-        text: "Phân công, phối hợp và kiểm soát quyền lực nhà nước",
-        rationale:
-          "Nguyên tắc này giúp đảm bảo quyền lực nhà nước không bị lạm dụng, đồng thời tăng cường hiệu lực, hiệu quả hoạt động của bộ máy nhà nước.",
-        isCorrect: true,
-      },
-      {
-        text: "Quyền lực tập trung vào một cơ quan duy nhất",
-        rationale:
-          "Việc tập trung toàn bộ quyền lực vào một cơ quan có thể dẫn đến sự độc đoán, chuyên quyền, không phù hợp với bản chất dân chủ.",
-        isCorrect: false,
-      },
-      {
-        text: "Không cần phân chia quyền lực",
-        rationale:
-          "Nguyên tắc này đi ngược lại với đặc trưng của nhà nước pháp quyền, vốn nhấn mạnh sự phân chia quyền lực để kiểm soát và cân bằng.",
-        isCorrect: false,
-      },
+      { text: "Vì chúng chỉ là những sai lầm hành chính nhỏ", rationale: "Sai.", isCorrect: false },
+      { text: "Vì chúng nằm ngay trong tổ chức, làm thất thoát tài sản, băng hoại đạo đức và uy hiếp sự tồn vong của Đảng", rationale: "Đúng.", isCorrect: true },
+      { text: "Vì chỉ xảy ra trong chế độ cũ", rationale: "Sai.", isCorrect: false },
+      { text: "Vì chỉ làm giảm thu nhập của nhân dân", rationale: "Sai.", isCorrect: false },
     ],
-    hint: "Nguyên tắc này liên quan đến sự phân bổ quyền lực trong bộ máy nhà nước.",
+    hint: "Người nói 'nằm ngay trong tổ chức ta'.",
   },
   {
     questionNumber: 12,
-    question:
-      "Dân chủ xã hội chủ nghĩa có vai trò gì trong sự phát triển xã hội?",
+    question: "Tham nhũng gây ra hậu quả gì cho xã hội và Nhà nước?",
     imageUrl: null,
     answerOptions: [
-      {
-        text: "Làm chậm quá trình phát triển kinh tế",
-        rationale:
-          "Ngược lại, dân chủ xã hội chủ nghĩa thúc đẩy sự phát triển kinh tế bằng cách phát huy quyền làm chủ và sáng tạo của người dân.",
-        isCorrect: false,
-      },
-      {
-        text: "Chỉ có lợi cho một số ít người trong xã hội",
-        rationale:
-          "Dân chủ xã hội chủ nghĩa hướng đến lợi ích chung, mang lại công bằng và tiến bộ cho toàn xã hội.",
-        isCorrect: false,
-      },
-      {
-        text: "Thúc đẩy sự phát triển công bằng, tiến bộ xã hội",
-        rationale:
-          "Đây là vai trò quan trọng của dân chủ xã hội chủ nghĩa, giúp xã hội phát triển hài hòa, bền vững.",
-        isCorrect: true,
-      },
-      {
-        text: "Tạo ra sự phân hóa giàu nghèo sâu sắc hơn",
-        rationale:
-          "Dân chủ xã hội chủ nghĩa hướng đến xóa bỏ sự phân hóa, xây dựng một xã hội công bằng.",
-        isCorrect: false,
-      },
+      { text: "Chỉ làm chậm nhịp phát triển kinh tế", rationale: "Sai.", isCorrect: false },
+      { text: "Làm thất thoát kinh tế, mất niềm tin của nhân dân, đe dọa sự tồn vong của Đảng và chế độ", rationale: "Đúng.", isCorrect: true },
+      { text: "Chỉ ảnh hưởng đến một số cán bộ cấp cao", rationale: "Sai.", isCorrect: false },
+      { text: "Không gây tác động lâu dài", rationale: "Sai.", isCorrect: false },
     ],
-    hint: "Vai trò này thể hiện ở việc đảm bảo lợi ích chung cho toàn xã hội.",
+    hint: "Hậu quả cả kinh tế lẫn chính trị.",
   },
   {
     questionNumber: 13,
-    question:
-      "Nhân tố nào đóng vai trò quyết định trong việc xây dựng và hoàn thiện Nhà nước pháp quyền xã hội chủ nghĩa ở Việt Nam?",
+    question: "Tham nhũng gây tác hại gì về mặt kinh tế?",
     imageUrl: null,
     answerOptions: [
-      {
-        text: "Sự lãnh đạo của một cá nhân tài giỏi",
-        rationale:
-          "Sự lãnh đạo tập thể và sự tham gia của nhân dân là yếu tố quyết định, không phải chỉ một cá nhân.",
-        isCorrect: false,
-      },
-      {
-        text: "Sự lãnh đạo của Đảng Cộng sản Việt Nam",
-        rationale:
-          "Đảng Cộng sản Việt Nam là nhân tố chính trị duy nhất lãnh đạo quá trình xây dựng và hoàn thiện Nhà nước pháp quyền xã hội chủ nghĩa ở Việt Nam.",
-        isCorrect: true,
-      },
-      {
-        text: "Sự can thiệp của các quốc gia khác",
-        rationale:
-          "Việc xây dựng nhà nước là công việc nội bộ của mỗi quốc gia, không phụ thuộc vào sự can thiệp từ bên ngoài.",
-        isCorrect: false,
-      },
-      {
-        text: "Sự độc quyền về kinh tế",
-        rationale:
-          "Yếu tố quyết định là chính trị, là sự lãnh đạo của Đảng, không phải độc quyền kinh tế.",
-        isCorrect: false,
-      },
+      { text: "Chỉ ảnh hưởng tới một số doanh nghiệp nhỏ", rationale: "Sai.", isCorrect: false },
+      { text: "Gây thất thoát, lãng phí nguồn lực quốc gia, làm chậm tốc độ tăng trưởng, méo mó môi trường kinh doanh", rationale: "Đúng.", isCorrect: true },
+      { text: "Không ảnh hưởng đến chi phí đầu tư, đấu thầu", rationale: "Sai.", isCorrect: false },
+      { text: "Chỉ gây khó khăn trong quản lý hành chính", rationale: "Sai.", isCorrect: false },
     ],
-    hint: "Nhân tố này là lực lượng chính trị duy nhất được Hiến pháp công nhận.",
+    hint: "Liên hệ chi phí ngầm trong đầu tư.",
   },
   {
     questionNumber: 14,
-    question:
-      "Biểu hiện nào dưới đây cho thấy bản chất dân chủ của Nhà nước pháp quyền xã hội chủ nghĩa Việt Nam?",
+    question: "Tham nhũng tác động như thế nào đến xã hội và chính trị?",
     imageUrl: null,
     answerOptions: [
-      {
-        text: "Quyền lực nhà nước được chia đều cho mọi cá nhân",
-        rationale:
-          "Quyền lực nhà nước là thống nhất, không chia đều cho mọi cá nhân mà được phân công cho các cơ quan khác nhau.",
-        isCorrect: false,
-      },
-      {
-        text: "Quyền lực nhà nước thuộc về nhân dân",
-        rationale:
-          "Đây là nguyên tắc cơ bản và là biểu hiện rõ nét nhất của bản chất dân chủ trong nhà nước pháp quyền xã hội chủ nghĩa.",
-        isCorrect: true,
-      },
-      {
-        text: "Quyền lực chỉ tập trung vào cơ quan lập pháp",
-        rationale:
-          "Quyền lực nhà nước có sự phân công, phối hợp giữa lập pháp, hành pháp và tư pháp.",
-        isCorrect: false,
-      },
-      {
-        text: "Nhà nước đứng trên và ngoài pháp luật",
-        rationale:
-          "Bản chất nhà nước pháp quyền là mọi cơ quan nhà nước đều phải tuân thủ pháp luật.",
-        isCorrect: false,
-      },
+      { text: "Chỉ làm thay đổi chính sách hành chính", rationale: "Sai.", isCorrect: false },
+      { text: "Làm băng hoại đạo đức, tạo bất bình trong dân, khoét sâu khoảng cách giàu – nghèo, làm mục ruỗng bộ máy, suy thoái cán bộ, đảng viên, đe dọa sự tồn vong của Đảng và chế độ", rationale: "Đúng.", isCorrect: true },
+      { text: "Chỉ ảnh hưởng tới cá nhân tham nhũng", rationale: "Sai.", isCorrect: false },
+      { text: "Không gây tác động lâu dài", rationale: "Sai.", isCorrect: false },
     ],
-    hint: "Hãy nghĩ về ai là chủ thể của quyền lực nhà nước.",
+    hint: "Nhấn mạnh băng hoại đạo đức, mục ruỗng bộ máy.",
   },
   {
     questionNumber: 15,
-    question:
-      "Nguyên tắc hoạt động nào của Nhà nước pháp quyền xã hội chủ nghĩa Việt Nam có ý nghĩa quan trọng trong phòng, chống tham nhũng, lãng phí?",
+    question: "Giải pháp nào được nêu để ngăn chặn và đẩy lùi tham nhũng?",
     imageUrl: null,
     answerOptions: [
-      {
-        text: "Nguyên tắc quyền lực tập trung",
-        rationale:
-          "Việc tập trung quyền lực dễ tạo điều kiện cho tham nhũng, lãng phí, không phải là nguyên tắc phòng, chống.",
-        isCorrect: false,
-      },
-      {
-        text: "Nguyên tắc không chịu sự giám sát",
-        rationale:
-          "Việc không có sự giám sát sẽ khiến tệ nạn tham nhũng, lãng phí gia tăng.",
-        isCorrect: false,
-      },
-      {
-        text: "Nguyên tắc phân công, phối hợp và kiểm soát quyền lực nhà nước",
-        rationale:
-          "Sự kiểm soát quyền lực là một trong những biện pháp hữu hiệu nhất để phòng, chống tham nhũng, lãng phí.",
-        isCorrect: true,
-      },
-      {
-        text: "Nguyên tắc chỉ quản lý bằng mệnh lệnh",
-        rationale:
-          "Quản lý bằng mệnh lệnh mà không có cơ chế kiểm soát sẽ dễ dẫn đến tiêu cực, tham nhũng.",
-        isCorrect: false,
-      },
+      { text: "Chỉ tăng lương cho cán bộ để họ không tham nhũng", rationale: "Sai.", isCorrect: false },
+      { text: "Kiểm soát quyền lực, trách nhiệm người đứng đầu, cải cách hành chính, phát huy vai trò nhân dân, nêu gương cán bộ", rationale: "Đúng.", isCorrect: true },
+      { text: "Hạn chế dân giám sát, giảm minh bạch thủ tục", rationale: "Sai.", isCorrect: false },
+      { text: "Không cần xử lý nghiêm minh, chỉ nhắc nhở", rationale: "Sai.", isCorrect: false },
     ],
-    hint: "Nguyên tắc này liên quan đến sự cân bằng và giám sát các nhánh quyền lực của nhà nước.",
+    hint: "Kiểm soát quyền lực và vai trò nhân dân.",
   },
 ];
 

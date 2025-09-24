@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
-// ✅ Import đúng file đã convert sang H.264 + AAC
 import videoBg from "../assets/mln-bg-h264.mp4";
 
 const LandingPage: React.FC = () => {
@@ -18,23 +17,23 @@ const LandingPage: React.FC = () => {
     if (step < introSteps.length - 1) {
       setStep(step + 1);
     } else {
-      navigate("/intro"); // Navigate to intro page after the last step
+      navigate("/intro");
     }
   };
 
   const introSteps = [
     {
-      title: "Dân chủ XHCN & Nhà nước pháp quyền XHCN",
-      subtitle: "Hai trụ cột của xã hội vì nhân dân",
+      title: "Tư tưởng Hồ Chí Minh",
+      subtitle: "Nền tảng tư tưởng cho cách mạng Việt Nam",
       actionText: "Tiếp tục",
     },
     {
       title: "Mục tiêu học:",
       listItems: [
-        "Hiểu rõ nguyên lý nhà nước pháp quyền XHCN",
-        "Làm rõ bản chất dân chủ XHCN",
-        "Nhận diện vai trò Đảng Cộng sản",
-        "Liên hệ thực tiễn ở Việt Nam",
+        "Hiểu rõ quan điểm Hồ Chí Minh về độc lập dân tộc và CNXH",
+        "Nhận diện vai trò đại đoàn kết dân tộc",
+        "Phân tích tư tưởng về xây dựng Đảng và Nhà nước",
+        "Liên hệ thực tiễn công cuộc đổi mới",
       ],
       actionText: "Bắt đầu học",
     },
@@ -44,9 +43,7 @@ const LandingPage: React.FC = () => {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
+      transition: { staggerChildren: 0.2 },
     },
     exit: { opacity: 0, transition: { duration: 0.5 } },
   };
@@ -90,7 +87,7 @@ const LandingPage: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              Chào mừng đến với MLN131
+              Chào mừng đến với môn Tư tưởng Hồ Chí Minh
             </motion.h1>
             <motion.p
               className="text-lg md:text-2xl text-white/90 mb-8 font-medium drop-shadow"
@@ -98,8 +95,7 @@ const LandingPage: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
             >
-              Nền tảng học tập về Dân chủ xã hội chủ nghĩa & Nhà nước pháp quyền
-              XHCN ở Việt Nam
+              Khám phá nền tảng tư tưởng cách mạng của Chủ tịch Hồ Chí Minh
             </motion.p>
             <motion.button
               onClick={handleStart}

@@ -1,418 +1,658 @@
-// src/pages/IntroPage.tsx
 import React from "react";
-import { cubicBezier, motion } from "framer-motion";
-import img3ng from "../assets/3ng.png";
-import section1 from "../assets/section1.jpg";
-import section2Img from "../assets/section2.png"; // Ảnh cho Section 2
-import section3Img from "../assets/section3.jpg"; // Ảnh cho Section 3
-import section4Img from "../assets/section4.png"; // Ảnh cho Section 4 (ảnh bạn đã tạo)
+import { motion, cubicBezier } from "framer-motion";
 import {
   FaGavel,
   FaVoteYea,
   FaStar,
   FaGlobeAsia,
   FaLightbulb,
+  FaArrowRight,
 } from "react-icons/fa";
+import { Link as ScrollLink } from "react-scroll";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip as ReTooltip,
+  ResponsiveContainer,
+  PieChart,
+  Pie,
+} from "recharts";
 
+// ====== Reuse your current assets (giữ nguyên ảnh hiện có) ======
+import img3ng from "../assets/3ng.png";
+import section1 from "../assets/section1.jpg";
+import section2Img from "../assets/section2.jpg";
+import section3Img from "../assets/section3.jpg";
+import section4Img from "../assets/section4.jpg";
+
+// Video nền có thể dùng file cũ của bạn
 const videoUrl = "/assets/video/bg-socialism.mp4";
 
-const IntroPage: React.FC = () => {
-  const sectionVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.8, ease: cubicBezier(0.4, 0, 0.2, 1) },
-    },
-  };
+// ====== Motion helpers ======
+const sectionVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, ease: cubicBezier(0.4, 0, 0.2, 1) },
+  },
+};
 
-  const tooltipClass =
-    "absolute bottom-0 left-1/2 translate-y-full -translate-x-1/2 w-[80%] " +
-    "bg-black/70 text-white text-sm md:text-base font-medium px-4 py-3 " +
-    "rounded-lg shadow-lg backdrop-blur-md pointer-events-none";
+const tooltipClass =
+  "absolute bottom-0 left-1/2 translate-y-full -translate-x-1/2 w-[80%] bg-black/70 text-white text-sm md:text-base font-medium px-4 py-3 rounded-lg shadow-lg backdrop-blur-md pointer-events-none";
 
+// ====== Quick Nav ======
+function QuickNav() {
+  const items = [
+    { id: "quan-diem", label: "Quan điểm HCM" },
+    { id: "nha-nuoc", label: "Nhà nước của dân" },
+    { id: "thuc-trang", label: "Thực trạng – số liệu" },
+    { id: "thach-thuc", label: "Thách thức" },
+    { id: "giai-phap", label: "Giải pháp" },
+    { id: "quiz", label: "Quiz" },
+  ];
   return (
-    <div className="relative w-full min-h-screen overflow-hidden pb-20 bg-[#f4f7ff]">
-      {/* Video background */}
-      <video
-        className="absolute inset-0 w-full h-full object-cover blur-md scale-110 opacity-80 -z-10"
-        src={videoUrl}
-        autoPlay
-        loop
-        muted
-        playsInline
-      />
-
-      {/* Hero Section */}
-      <div className="relative w-full min-h-[85vh] flex flex-col md:flex-row items-center justify-center px-4 pt-24 gap-12 z-10">
-        <motion.div
-          className="flex-1 text-center"
-          initial={{ opacity: 0, y: -40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
+    <div className="flex flex-wrap items-center justify-center gap-3 mt-4">
+      {items.map((it) => (
+        <ScrollLink
+          key={it.id}
+          to={it.id}
+          smooth
+          duration={600}
+          offset={-80}
+          className="cursor-pointer px-4 py-2 rounded-full bg-white/80 hover:bg-white shadow border border-white/60 text-[#2a2e6e] font-medium backdrop-blur-md transition"
         >
-          <span className="text-[#6e7fdc] font-semibold mb-2 text-lg">
-            Khám phá chủ đề
-          </span>
-          <h1 className="text-4xl md:text-6xl font-extrabold text-[#2a2e6e] mb-6 leading-tight drop-shadow-lg">
-            Dân chủ xã hội chủ nghĩa
-            <br />
-            <span className="block text-3xl md:text-5xl font-bold text-[#6e7fdc] mt-2">
-              & Nhà nước pháp quyền XHCN ở Việt Nam
-            </span>
-          </h1>
-          <p className="text-xl md:text-2xl font-medium text-[#2a2e6e]/80 max-w-2xl mx-auto mb-8 leading-relaxed drop-shadow bg-white/60 rounded-2xl px-6 py-4 backdrop-blur-md shadow-lg">
-            Dân chủ xã hội chủ nghĩa là nền dân chủ rộng rãi, bảo đảm quyền lực
-            thực sự thuộc về nhân dân, được thực hiện thông qua nhà nước pháp
-            quyền xã hội chủ nghĩa.
+          {it.label}
+        </ScrollLink>
+      ))}
+    </div>
+  );
+}
+
+// ====== Flip Card ======
+function FlipCard({ title, bullets, quote }: { title: string; bullets: string[]; quote?: string }) {
+  return (
+    <div className="group [perspective:1000px] w-full max-w-sm">
+      <div className="relative h-64 w-full rounded-2xl shadow-xl transition-transform duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] bg-white/70 backdrop-blur-md border border-white/70">
+        {/* Front */}
+        <div className="absolute inset-0 p-5 flex flex-col justify-center items-center [backface-visibility:hidden]">
+<h3 className="text-xl font-bold text-[#2a2e6e] mb-3 text-center h-12 flex items-center justify-center">
+  {title}
+</h3>
+          <ul className="text-sm text-gray-700 list-disc list-inside space-y-1">
+            {bullets.map((b, i) => (
+              <li key={i}>{b}</li>
+            ))}
+          </ul>
+          <div className="mt-4 text-xs text-gray-500 italic"></div>
+        </div>
+        {/* Back */}
+        <div className="absolute inset-0 p-5 flex flex-col justify-center items-center [backface-visibility:hidden] [transform:rotateY(180deg)] bg-[#2a2e6e] text-white rounded-2xl">
+          <div className="text-sm leading-relaxed text-center">
+            {quote || "\u2014"}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ====== Triangle Power Diagram ======
+function PowerTriangle() {
+  const nodes = [
+    { id: "people", label: "Nhân dân", x: 50, y: 10 },
+    { id: "party", label: "Đảng", x: 10, y: 85 },
+    { id: "state", label: "Nhà nước", x: 90, y: 85 },
+  ];
+  const edges = [
+    { from: "people", to: "party", text: "Ủy thác niềm tin • giám sát" },
+    { from: "party", to: "state", text: "Lãnh đạo • định hướng" },
+    { from: "state", to: "people", text: "Phục vụ • bảo đảm quyền" },
+  ];
+  return (
+    <div className="relative w-full max-w-xl aspect-square mx-auto">
+      <svg viewBox="0 0 100 100" className="w-full h-full">
+        {/* Edges */}
+        {edges.map((e, i) => (
+          <g key={i}>
+            <line
+              x1={nodes.find((n) => n.id === e.from)!.x}
+              y1={nodes.find((n) => n.id === e.from)!.y}
+              x2={nodes.find((n) => n.id === e.to)!.x}
+              y2={nodes.find((n) => n.id === e.to)!.y}
+              className="stroke-[#6e7fdc]"
+              strokeWidth={0.8}
+            />
+          </g>
+        ))}
+        {/* Nodes */}
+        {nodes.map((n) => (
+          <g key={n.id}>
+            <circle cx={n.x} cy={n.y} r={4.5} className="fill-[#2a2e6e]" />
+            <text x={n.x} y={n.y + 8} textAnchor="middle" className="fill-[#2a2e6e] text-[4px] font-semibold">
+              {n.label}
+            </text>
+          </g>
+        ))}
+      </svg>
+      {/* Hover tooltips (đơn giản bằng legend dưới) */}
+      <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-3 text-sm">
+        <div className="p-3 rounded-xl bg-white/70 border border-white/70 shadow">Nhân dân ↔ Đảng: Phê bình, góp ý, kiểm tra đảng viên.</div>
+        <div className="p-3 rounded-xl bg-white/70 border border-white/70 shadow">Đảng ↔ Nhà nước: Lãnh đạo bằng Cương lĩnh, đường lối; tôn trọng pháp quyền.</div>
+        <div className="p-3 rounded-xl bg-white/70 border border-white/70 shadow">Nhà nước ↔ Nhân dân: Phục vụ lợi ích nhân dân; thực hiện dân chủ, pháp luật nghiêm minh.</div>
+      </div>
+    </div>
+  );
+}
+
+// ====== Demo data (Trực quan hoá số liệu) ======
+const corruptionData = [
+  { name: "Thu hồi 2010 (tỷ)", value: 8152 },
+  { name: "Đất (ha)", value: 2100 },
+];
+
+const socialImpact = [
+  { name: "Mất niềm tin", value: 40 },
+  { name: "Đạo đức xuống cấp", value: 35 },
+  { name: "Bất bình XH", value: 25 },
+];
+
+// ====== Main Page ======
+const IntroPage_HCM: React.FC = () => {
+  return (
+    <div className="relative w-full min-h-screen overflow-hidden pb-24 bg-[#f4f7ff]">
+      {/* Video background */}
+      <video className="absolute inset-0 w-full h-full object-cover blur-md scale-110 opacity-80 -z-10" src={videoUrl} autoPlay loop muted playsInline />
+
+      {/* HERO / HOME */}
+      <section className="relative w-full min-h-[85vh] flex flex-col md:flex-row items-center justify-center px-4 pt-24 gap-12 z-10" id="home">
+        <motion.div className="flex-1 text-center" initial={{ opacity: 0, y: -40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1 }}>
+      <h1 className="text-4xl md:text-6xl font-extrabold text-[#2a2e6e] mb-6 leading-snug tracking-tight drop-shadow-lg text-center">
+  Xây dựng Đảng & Nhà nước trong sạch, vững mạnh
+  <br />
+  <span className="block text-3xl md:text-5xl font-bold text-[#2a2e6e] mt-2">
+    Phòng, chống tham nhũng
+  </span>
+</h1>
+
+         <p className="text-lg md:text-xl text-[#2a2e6e]/80 max-w-2xl mx-auto mb-6 leading-relaxed drop-shadow bg-white/60 rounded-2xl px-6 py-4 backdrop-blur-md shadow-lg">
+            Giới thiệu nhanh: Ý nghĩa, mục tiêu và yêu cầu cấp bách của nhiệm vụ xây dựng Đảng, xây dựng Nhà nước pháp quyền XHCN trong sạch, vững mạnh; kiên quyết phòng, chống tham nhũng, tiêu cực.
           </p>
+          <QuickNav />
         </motion.div>
 
-        <motion.div
-          className="flex-1 flex justify-center items-center"
-          initial={{ opacity: 0, x: 40 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1, delay: 0.2 }}
-        >
-          <motion.div
-            className="relative group w-full max-w-xs md:max-w-md"
-            whileHover="hover"
-            initial="rest"
-            animate="rest"
-          >
+        <motion.div className="flex-1 flex justify-center items-center" initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 1, delay: 0.2 }}>
+          <motion.div className="relative group w-full max-w-xs md:max-w-md" whileHover="hover" initial="rest" animate="rest">
             <motion.img
               src={img3ng}
-              alt="3 nhà tư tưởng"
+              alt="Karl Marx, Friedrich Engels, V.I. Lenin"
               className="rounded-3xl shadow-2xl w-full border-4 border-white/80 bg-white/60"
-              variants={{
-                rest: { rotate: 0 },
-                hover: {
-                  rotate: [0, -3, 3, -2, 2, 0],
-                  transition: { duration: 0.6 },
-                },
-              }}
+              variants={{ rest: { rotate: 0 }, hover: { rotate: [0, -3, 3, -2, 2, 0], transition: { duration: 0.6 } } }}
             />
             <motion.div
-              variants={{
-                rest: { opacity: 0, y: 10 },
-                hover: { opacity: 1, y: 0 },
-              }}
+              variants={{ rest: { opacity: 0, y: 10 }, hover: { opacity: 1, y: 0 } }}
               transition={{ duration: 0.4 }}
               className={tooltipClass}
             >
-              Bức họa nổi tiếng về Karl Marx, Friedrich Engels và V.I. Lenin –
-              ba nhà tư tưởng đã đặt nền móng lý luận cho chủ nghĩa xã hội khoa
-              học.
+              Poster đỏ–vàng với sao vàng, sách và khiên cán cân trước tòa nhà, kèm các biểu tượng chống tham nhũng, giám sát và liêm chính; tiêu đề ‘Xây dựng Đảng & Nhà nước trong sạch, vững mạnh – Phòng, chống tham nhũng.
             </motion.div>
           </motion.div>
         </motion.div>
-      </div>
+      </section>
 
-      {/* Timeline Sections */}
-      <div className="container mx-auto px-4 mt-20 relative">
+      <div className="container mx-auto px-4 mt-12 relative">
         <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-[#6e7fdc] to-[#2a2e6e] hidden md:block" />
 
-        {/* Section 1: Nhà nước Pháp quyền XHCN */}
-        <div className="flex flex-col md:flex-row items-center justify-between my-20">
-          <motion.div
-            className="md:w-1/2 md:pr-10 text-center md:text-right mb-8 md:mb-0"
-            variants={sectionVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.5 }}
-          >
-            <FaGavel className="inline-block text-4xl text-[#6e7fdc] mb-4" />
-            <h2 className="text-3xl md:text-4xl font-bold text-[#2a2e6e] mb-4">
-              Nhà nước Pháp quyền XHCN
-            </h2>
-            <p className="text-lg text-gray-700 max-w-xl md:ml-auto">
-              <span className="font-bold">Khái niệm:</span> Nhà nước{" "}
-              <span className="font-bold">
-                của nhân dân, do nhân dân, vì nhân dân
-              </span>
-              , quản lý xã hội bằng pháp luật.
-            </p>
-            <ul className="list-disc list-inside text-left text-gray-600 mt-4 md:text-right md:pl-0 md:pr-10 space-y-2">
-              <li className="font-semibold">Nguyên lý cơ bản:</li>
-              <ul className="list-[circle] list-inside pl-4 font-normal">
-                <li>Hiến pháp tối thượng, mọi tổ chức/cá nhân đều tuân thủ.</li>
-                <li>
-                  Quyền lực nhà nước thống nhất nhưng có phân công – phối hợp –
-                  kiểm soát giữa lập pháp, hành pháp, tư pháp.
-                </li>
-                <li>Bảo đảm và bảo vệ quyền con người, quyền công dân.</li>
-                <li>Gắn dân chủ với kỷ cương, pháp luật.</li>
-                <li>Phục vụ phát triển xã hội công bằng, dân chủ, văn minh.</li>
-              </ul>
-            </ul>
-          </motion.div>
-          <div className="md:w-1/2 flex justify-center items-center relative">
-            <motion.div
-              className="relative group w-full max-w-sm"
-              whileHover="hover"
-              initial="rest"
-              animate="rest"
-            >
-              <motion.img
-                src={section1}
-                alt="Tòa nhà Quốc hội Việt Nam"
-                className="rounded-2xl shadow-xl w-full border-4 border-white/80 bg-white/60"
-                variants={{
-                  rest: { scale: 1 },
-                  hover: { scale: 1.03, transition: { duration: 0.4 } },
-                }}
-              />
-              <motion.div
-                variants={{
-                  rest: { opacity: 0, y: 10 },
-                  hover: { opacity: 1, y: 0 },
-                }}
-                transition={{ duration: 0.4 }}
-                className={tooltipClass}
-              >
-                Tòa nhà Quốc hội Việt Nam được khởi công tháng 10/2009, khánh
-                thành và đi vào hoạt động ngày 20/10/2014 (kỳ họp Quốc hội thứ
-                8, khóa XIII).
-              </motion.div>
-            </motion.div>
-          </div>
-        </div>
-
-        {/* Section 2: Dân chủ XHCN */}
-        <div className="flex flex-col-reverse md:flex-row items-center justify-between my-20">
-          <div className="md:w-1/2 flex justify-center items-center relative">
-            <motion.div
-              className="relative group w-full max-w-sm"
-              whileHover="hover"
-              initial="rest"
-              animate="rest"
-            >
-              <motion.img
-                src={section2Img}
-                alt="Nhân dân tham gia bầu cử"
-                className="rounded-2xl shadow-xl w-full border-4 border-white/80 bg-white/60"
-                variants={{
-                  rest: { scale: 1 },
-                  hover: { scale: 1.03, transition: { duration: 0.4 } },
-                }}
-              />
-              <motion.div
-                variants={{
-                  rest: { opacity: 0, y: 10 },
-                  hover: { opacity: 1, y: 0 },
-                }}
-                transition={{ duration: 0.4 }}
-                className={tooltipClass}
-              >
-                Quyền bầu cử là một trong những quyền chính trị cơ bản, cho phép
-                mọi tầng lớp nhân dân trực tiếp tham gia xây dựng Nhà nước.
-              </motion.div>
-            </motion.div>
-          </div>
-          <motion.div
-            className="md:w-1/2 md:pl-10 text-center md:text-left mb-8 md:mb-0"
-            variants={sectionVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.5 }}
-          >
-            <FaVoteYea className="inline-block text-4xl text-[#2a2e6e] mb-4" />
-            <h2 className="text-3xl md:text-4xl font-bold text-[#2a2e6e] mb-4">
-              Dân chủ xã hội chủ nghĩa
-            </h2>
-            <p className="text-lg text-gray-700 max-w-xl md:mr-auto">
-              <span className="font-bold">Bản chất:</span> Quyền lực thuộc về đa
-              số nhân dân lao động.
-            </p>
-            <ul className="list-disc list-inside text-left text-gray-600 mt-4 space-y-2">
-              <li className="font-semibold">Nội dung dân chủ:</li>
-              <ul className="list-[circle] list-inside pl-4 font-normal">
-                <li>
-                  <span className="font-bold">Chính trị:</span> bầu cử, ứng cử,
-                  tham gia quản lý nhà nước.
-                </li>
-                <li>
-                  <span className="font-bold">Kinh tế:</span> quyền lao động, sở
-                  hữu, tham gia quyết định sản xuất.
-                </li>
-                <li>
-                  <span className="font-bold">Văn hóa – xã hội:</span> quyền học
-                  tập, sáng tạo, hưởng thụ văn hóa.
-                </li>
-              </ul>
-            </ul>
-            <p className="text-lg text-gray-700 max-w-xl md:mr-auto mt-4">
-              <span className="font-bold">Nguyên tắc:</span> “Dân biết – dân bàn
-              – dân làm – dân kiểm tra – dân thụ hưởng.”
-            </p>
-            <p className="text-lg text-gray-700 max-w-xl md:mr-auto mt-2">
-              <span className="font-bold">Hình thức:</span> kết hợp dân chủ đại
-              diện và dân chủ trực tiếp.
-            </p>
-          </motion.div>
-        </div>
-
-        {/* Section 3: Vai trò của Đảng */}
-        <div className="flex flex-col md:flex-row items-center justify-between my-20">
-          <motion.div
-            className="md:w-1/2 md:pr-10 text-center md:text-right mb-8 md:mb-0"
-            variants={sectionVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.5 }}
-          >
+        {/* 2. Quan điểm HCM */}
+        <section id="quan-diem" className="flex flex-col md:flex-row items-center justify-between my-20">
+          <motion.div className="md:w-1/2 md:pr-10 text-center md:text-right mb-8 md:mb-0" variants={sectionVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.5 }}>
             <FaStar className="inline-block text-4xl text-[#6e7fdc] mb-4" />
-            <h2 className="text-3xl md:text-4xl font-bold text-[#2a2e6e] mb-4">
-              Vai trò lãnh đạo của Đảng Cộng sản
-            </h2>
-            <ul className="list-disc list-inside text-left text-gray-600 mt-4 md:text-right md:pl-0 md:pr-10 space-y-2">
-              <li>
-                <span className="font-bold">
-                  Đảng lãnh đạo Nhà nước và xã hội:
-                </span>{" "}
-                Bảo đảm định hướng XHCN trong mọi chính sách.
-              </li>
-              <li>
-                <span className="font-bold">Xây dựng, chỉnh đốn Đảng:</span>{" "}
-                Chống tham nhũng, nâng cao năng lực, uy tín lãnh đạo.
-              </li>
-              <li>
-                <span className="font-bold">Đổi mới phương thức lãnh đạo:</span>{" "}
-                Tôn trọng nguyên tắc pháp quyền, không bao biện làm thay Nhà
-                nước, phát huy vai trò của Mặt trận Tổ quốc.
-              </li>
-            </ul>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#2a2e6e] mb-4">Tư tưởng Hồ Chí Minh về xây dựng Đảng trong sạch, vững mạnh</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-6">
+{/* === FlipCard grid (I. Tư tưởng HCM về xây dựng Đảng) === */}
+<FlipCard
+  title="Đảng vừa là đạo đức, vừa là văn minh"
+  bullets={[
+    "Không phải để làm quan phát tài",
+    "Đội tiên phong trung thành với lợi ích dân tộc & giai cấp công nhân"
+  ]}
+  quote={`“Đảng ta là đạo đức, là văn minh.” – Hồ Chí Minh`}
+/>
+
+<FlipCard
+  title="Phẩm chất cán bộ"
+  bullets={[
+    "Cần – Kiệm – Liêm – Chính – Chí công vô tư",
+    "Tuyệt đối trung thành với Đảng, đặt lợi ích chung lên trên cá nhân"
+  ]}
+  quote={`“Người cách mạng phải cần, kiệm, liêm, chính, chí công vô tư.” – Hồ Chí Minh`}
+/>
+
+<FlipCard
+  title="Công bộc của dân"
+  bullets={[
+    "Cán bộ là công bộc, đầy tớ trung thành của nhân dân",
+    "Phục vụ nhân dân, không đặc quyền đặc lợi"
+  ]}
+  quote={`“Cán bộ là công bộc của dân, là đầy tớ trung thành của nhân dân.” – Hồ Chí Minh`}
+/>
+
+<FlipCard
+  title="Giặc ở trong lòng"
+  bullets={[
+    "Chủ nghĩa cá nhân = nguồn gốc suy thoái",
+    "Làm nảy sinh tham nhũng, quan liêu"
+  ]}
+  quote={`“Chủ nghĩa cá nhân là giặc ở trong lòng.” – Hồ Chí Minh`}
+/>
+
+<FlipCard
+  title="CQ6.1 (yêu cầu cán bộ)"
+  bullets={[
+    "Gương mẫu, đấu tranh chống đặc quyền, đặc lợi",
+    "Không cửa quyền, hách dịch; định kỳ chuyển đổi công tác"
+  ]}
+  quote={`Cán bộ phải gương mẫu; kiên quyết chống đặc quyền, đặc lợi; không cửa quyền, hách dịch; định kỳ chuyển đổi vị trí công tác để ngăn ngừa tham nhũng (CQ6.1).`}
+/>
+
+            </div>
           </motion.div>
+
           <div className="md:w-1/2 flex justify-center items-center relative">
-            <motion.div
-              className="relative group w-full max-w-sm"
-              whileHover="hover"
-              initial="rest"
-              animate="rest"
-            >
+            <motion.div className="relative group w-full max-w-sm" whileHover="hover" initial="rest" animate="rest">
               <motion.img
                 src={section3Img}
-                alt="Biểu tượng Đảng Cộng sản"
+                alt="Biểu tượng Đảng"
                 className="rounded-2xl shadow-xl w-full border-4 border-white/80 bg-white/60"
-                variants={{
-                  rest: { scale: 1 },
-                  hover: { scale: 1.03, transition: { duration: 0.4 } },
-                }}
+                variants={{ rest: { scale: 1 }, hover: { scale: 1.03, transition: { duration: 0.4 } } }}
               />
-              <motion.div
-                variants={{
-                  rest: { opacity: 0, y: 10 },
-                  hover: { opacity: 1, y: 0 },
-                }}
-                transition={{ duration: 0.4 }}
-                className={tooltipClass}
-              >
-                Biểu tượng búa liềm của Đảng Cộng sản, đại diện cho liên minh
-                công nông và sự lãnh đạo của giai cấp công nhân.
+              <motion.div variants={{ rest: { opacity: 0, y: 10 }, hover: { opacity: 1, y: 0 } }} transition={{ duration: 0.4 }} className={tooltipClass}>
+                Bác Hồ – Đảng – Dân tộc.
               </motion.div>
             </motion.div>
           </div>
-        </div>
+        </section>
 
-        {/* Section 4: Thực tiễn Việt Nam */}
-        <div className="flex flex-col-reverse md:flex-row items-center justify-between my-20">
-          <div className="md:w-1/2 flex justify-center items-center relative">
-            <motion.div
-              className="relative group w-full max-w-sm"
-              whileHover="hover"
-              initial="rest"
-              animate="rest"
-            >
-              <motion.img
-                src={section4Img}
-                alt="Người dân sử dụng dịch vụ công trực tuyến"
-                className="rounded-2xl shadow-xl w-full border-4 border-white/80 bg-white/60"
-                variants={{
-                  rest: { scale: 1 },
-                  hover: { scale: 1.03, transition: { duration: 0.4 } },
-                }}
-              />
-              <motion.div
-                variants={{
-                  rest: { opacity: 0, y: 10 },
-                  hover: { opacity: 1, y: 0 },
-                }}
-                transition={{ duration: 0.4 }}
-                className={tooltipClass}
-              >
-                Hình ảnh người dân dễ dàng thực hiện các thủ tục hành chính
-                thông qua Cổng Dịch vụ công Quốc gia, minh chứng cho nỗ lực cải
-                cách và hiện đại hóa.
-              </motion.div>
-            </motion.div>
-          </div>
-          <motion.div
-            className="md:w-1/2 md:pl-10 text-center md:text-left mb-8 md:mb-0"
-            variants={sectionVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.5 }}
-          >
-            <FaGlobeAsia className="inline-block text-4xl text-[#2a2e6e] mb-4" />
-            <h2 className="text-3xl md:text-4xl font-bold text-[#2a2e6e] mb-4">
-              Thực tiễn Việt Nam
-            </h2>
-            <ul className="list-disc list-inside text-left text-gray-600 mt-4 space-y-2">
-              <li>
-                <span className="font-bold">Hiến pháp 2013:</span> Khẳng định
-                Nhà nước pháp quyền XHCN “của nhân dân, do nhân dân, vì nhân
-                dân.”
-              </li>
-              <li>
-                <span className="font-bold">
-                  Cải cách tư pháp & hành chính:
-                </span>{" "}
-                Chính phủ điện tử, dịch vụ công trực tuyến, tòa án độc lập hơn.
-              </li>
-              <li>
-                <span className="font-bold">
-                  Luật Phòng chống tham nhũng (2018):
-                </span>{" "}
-                Minh bạch tài sản, xử lý nghiêm.
-              </li>
-              <li>
-                <span className="font-bold">Quy chế dân chủ ở cơ sở:</span> Đối
-                thoại chính quyền – nhân dân, công khai ngân sách, dân giám sát.
-              </li>
-            </ul>
-          </motion.div>
-        </div>
+       {/* 3. Nhà nước của dân, do dân, vì dân */}
+<section
+  id="nha-nuoc"
+  className="flex flex-col-reverse md:flex-row items-center justify-between my-20"
+>
+  {/* Cột trái: Nội dung */}
+  <motion.div
+    className="md:w-1/2 md:pr-10 text-center md:text-right mb-8 md:mb-0"
+    variants={sectionVariants}
+    initial="hidden"
+    whileInView="visible"
+    viewport={{ once: true, amount: 0.5 }}
+  >
+    <FaGavel className="inline-block text-4xl text-[#2a2e6e] mb-4" />
+    <h2 className="text-3xl md:text-4xl font-bold text-[#2a2e6e] mb-4">
+      Nhà nước của dân, do dân, vì dân
+    </h2>
+
+    {/* Nội dung chính theo II */}
+    <ul className="list-disc list-inside text-left text-gray-700 space-y-2">
+      <li>
+        Nhà nước Việt Nam theo Hồ Chí Minh là <b>nhà nước dân chủ</b>, mọi
+        quyền hành thuộc về <b>toàn thể nhân dân</b>.
+      </li>
+      <li>
+        Cán bộ Nhà nước là <b>“công bộc”</b>, phải làm sao cho{" "}
+        <b>dân giàu, nước mạnh</b>.
+      </li>
+      <li>
+        Quyền lực nhà nước cần được <b>kiểm soát</b>. Nhân dân có quyền{" "}
+        <b>giám sát, phê bình, bãi miễn</b> đại biểu nếu không xứng đáng.
+      </li>
+    </ul>
+
+    {/* Kết nối CQ6.4 */}
+    <div className="mt-6 p-4 rounded-2xl bg-white/70 border border-white/70 shadow">
+      <div className="font-semibold text-[#2a2e6e] mb-2">
+        Kết nối CQ6.4: Yêu cầu với Nhà nước pháp quyền XHCN trong giai đoạn mới
       </div>
+      <ul className="list-disc list-inside text-left text-gray-700 space-y-2">
+        <li>
+          <b>Hệ thống pháp luật</b> hoàn thiện, bảo vệ quyền công dân.
+        </li>
+        <li>
+          <b>Tổ chức bộ máy</b> trong sạch, vững mạnh.
+        </li>
+        <li>
+          Thực hiện cơ chế <b>“một cửa”</b> để minh bạch, chống quan liêu.
+        </li>
+        <li>
+          <b>Luân chuyển cán bộ</b> ở vị trí nhạy cảm (tài sản, ngân sách).
+        </li>
+      </ul>
+    </div>
+  </motion.div>
 
-      {/* Conclusion */}
+  {/* Cột phải: PowerTriangle */}
+  <div className="md:w-1/2 flex justify-center items-center relative mb-8 md:mb-0">
+    <div className="w-full max-w-sm">
+      <PowerTriangle />
+    </div>
+  </div>
+</section>
+
+
+       {/* 3. Tham nhũng – Nguy cơ và Thực trạng */}
+<section
+  id="thuc-trang"
+  className="flex flex-col md:flex-row items-start justify-between my-20 gap-8"
+>
+  {/* Cột trái: Mở đầu + Kinh tế */}
+  <motion.div
+    className="md:w-1/2 text-left"
+    variants={sectionVariants}
+    initial="hidden"
+    whileInView="visible"
+    viewport={{ once: true, amount: 0.5 }}
+  >
+    <FaGlobeAsia className="inline-block text-4xl text-[#6e7fdc] mb-4" />
+    <h2 className="text-3xl md:text-4xl font-bold text-[#2a2e6e] mb-4">
+      Tham nhũng – Nguy cơ và Thực trạng
+    </h2>
+
+    {/* Mở đầu */}
+    <div className="p-4 rounded-2xl bg-white/70 border border-white/70 shadow mb-6">
+      <ul className="list-disc list-inside text-gray-700 space-y-2">
+        <li>
+          Tham nhũng gắn liền với <b>quyền lực</b>: chỉ người có chức vụ, quyền
+          hạn mới có thể lợi dụng để trục lợi.
+        </li>
+        <li>
+          Hồ Chí Minh coi <b>tham ô</b> là “trộm cướp”, <b>lãng phí</b> là “kẻ
+          thù của nhân dân”, <b>quan liêu</b> là mảnh đất nuôi dưỡng tham nhũng.
+        </li>
+        <li>
+          Hệ quả: xói mòn niềm tin, băng hoại đạo đức, cản trở phát triển, mục
+          ruỗng bộ máy; bị thế lực thù địch lợi dụng.
+        </li>
+      </ul>
+    </div>
+
+    {/* Kinh tế */}
+    <div className="p-4 rounded-2xl bg-white/70 border border-white/70 shadow text-left">
+      <h3 className="font-semibold text-[#2a2e6e] mb-2">Kinh tế</h3>
+      <div className="h-48 w-full">
+        <ResponsiveContainer>
+          <BarChart data={corruptionData}>
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="name" tick={{ fontSize: 12 }} />
+            <YAxis tick={{ fontSize: 12 }} />
+            <ReTooltip />
+            <Bar dataKey="value" radius={[8, 8, 0, 0]} />
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
+      <ul className="list-disc list-inside text-sm text-gray-700 mt-3 space-y-1">
+        <li>
+          Gây <b>thất thoát, lãng phí</b> nguồn lực quốc gia, làm chậm tăng
+          trưởng.
+        </li>
+        <li>
+          Tạo <b>chi phí “ngầm”</b> trong đầu tư, đấu thầu, cấp vốn → méo mó
+          môi trường kinh doanh.
+        </li>
+        <li className="text-gray-600">
+          CQ6.2: Năm 2010, thanh tra kiến nghị thu hồi hơn <b>8.152 tỷ đồng</b>{" "}
+          và hơn <b>2.100 ha đất</b> do sai phạm trong quản lý đất đai, đầu tư,
+          tài sản công.
+        </li>
+      </ul>
+    </div>
+  </motion.div>
+
+  {/* Cột phải: Xã hội + Chính trị */}
+  <motion.div
+    className="md:w-1/2 text-left"
+    variants={sectionVariants}
+    initial="hidden"
+    whileInView="visible"
+    viewport={{ once: true, amount: 0.5 }}
+  >
+    {/* Xã hội */}
+    <div className="p-4 rounded-2xl bg-white/70 border border-white/70 shadow mb-6">
+      <h3 className="font-semibold text-[#2a2e6e] mb-2">Xã hội</h3>
+      <div className="h-48 w-full">
+        <ResponsiveContainer>
+          <PieChart>
+            <Pie
+              data={socialImpact}
+              dataKey="value"
+              nameKey="name"
+              cx="50%"
+              cy="50%"
+              outerRadius={70}
+              label
+            />
+          </PieChart>
+        </ResponsiveContainer>
+      </div>
+      <ul className="list-disc list-inside text-sm text-gray-700 mt-3 space-y-1">
+        <li>
+          Băng hoại đạo đức, khuyến khích <b>chủ nghĩa cá nhân, vụ lợi</b>.
+        </li>
+        <li>
+          Gây <b>bất bình</b>, làm <b>mất niềm tin</b> của nhân dân với Đảng,
+          Nhà nước.
+        </li>
+        <li>
+          Khoét sâu <b>khoảng cách giàu – nghèo</b>, bất công xã hội, suy giảm
+          đồng thuận.
+        </li>
+      </ul>
+    </div>
+
+    {/* Chính trị */}
+    <div className="p-4 rounded-2xl bg-white/70 border border-white/70 shadow">
+      <h3 className="font-semibold text-[#2a2e6e] mb-2">Chính trị</h3>
+      <ul className="list-disc list-inside text-sm text-gray-700 space-y-1">
+        <li>Làm mục ruỗng bộ máy, suy thoái cán bộ, đảng viên.</li>
+        <li>
+          <b>Trực tiếp đe dọa sự tồn vong</b> của Đảng và chế độ.
+        </li>
+        <li>
+          Bị các thế lực thù địch lợi dụng để chống phá, chia rẽ nhân dân với
+          Đảng.
+        </li>
+      </ul>
+    </div>
+  </motion.div>
+</section>
+
+       {/* 4. Thách thức xây dựng Đảng hiện nay */}
+<section
+  id="thach-thuc"
+  className="flex flex-col-reverse md:flex-row items-center justify-between my-20 gap-8"
+>
+  {/* (Giữ) Cột trái: ảnh minh hoạ – có thể bỏ nếu muốn */}
+  <div className="md:w-1/2 flex justify-center items-center relative">
+    <motion.div
+      className="relative group w-full max-w-sm"
+      whileHover="hover"
+      initial="rest"
+      animate="rest"
+    >
+      <motion.img
+        src={section4Img}
+        alt="Cải cách hành chính, chuyển đổi số"
+        className="rounded-2xl shadow-xl w-full border-4 border-white/80 bg-white/60"
+        variants={{
+          rest: { scale: 1 },
+          hover: { scale: 1.03, transition: { duration: 0.4 } },
+        }}
+      />
       <motion.div
-        className="container mx-auto px-4 mt-20 text-center"
-        variants={sectionVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.5 }}
+        variants={{ rest: { opacity: 0, y: 10 }, hover: { opacity: 1, y: 0 } }}
+        transition={{ duration: 0.4 }}
+        className={tooltipClass}
       >
-        <FaLightbulb className="inline-block text-4xl text-purple-600 mb-4" />
-        <h2 className="text-3xl md:text-4xl font-bold text-[#2a2e6e] mb-4">
-          Kết luận
-        </h2>
-        <ul className="space-y-4 text-xl md:text-2xl font-medium text-gray-700 max-w-3xl mx-auto list-none">
-          <li>
-            Dân chủ là <span className="font-bold">mục tiêu</span>, Nhà nước
-            pháp quyền là <span className="font-bold">phương tiện</span>.
-          </li>
-          <li>
-            Đảng là nhân tố{" "}
-            <span className="font-bold">bảo đảm định hướng đúng đắn</span>.
-          </li>
-          <li>
-            Xây dựng xã hội công bằng, dân chủ, văn minh là{" "}
-            <span className="font-bold">trách nhiệm chung</span>.
-          </li>
-        </ul>
+        Xây dựng Đảng Cộng sản Việt Nam trong sạch, vững mạnh.
       </motion.div>
+    </motion.div>
+  </div>
+
+  {/* Cột phải: nội dung theo IV */}
+  <motion.div
+    className="md:w-1/2 md:pl-10 text-center md:text-left mb-8 md:mb-0"
+    variants={sectionVariants}
+    initial="hidden"
+    whileInView="visible"
+    viewport={{ once: true, amount: 0.5 }}
+  >
+    <FaVoteYea className="inline-block text-4xl text-[#2a2e6e] mb-4" />
+    <h2 className="text-3xl md:text-4xl font-bold text-[#2a2e6e] mb-4">
+      Thách thức xây dựng Đảng hiện nay
+    </h2>
+
+    <p className="text-gray-700 mb-3">
+      Hiện nay, công tác xây dựng Đảng đối mặt nhiều thách thức:
+    </p>
+    <ul className="list-disc list-inside text-left text-gray-700 space-y-2">
+      <li>
+        Một bộ phận cán bộ, đảng viên <b>suy thoái tư tưởng, đạo đức, lối sống</b>.
+      </li>
+      <li>
+        Xuất hiện tình trạng <b>“tự diễn biến”, “tự chuyển hóa”</b> trong nội bộ.
+      </li>
+      <li>
+        <b>Công tác cán bộ</b> còn yếu, tồn tại cục bộ, bè phái, tạo điều kiện hình thành
+        <b> tham nhũng khép kín</b>.
+      </li>
+      <li>
+        <b>Tham nhũng, lãng phí</b> vẫn diễn biến phức tạp, gây bức xúc trong xã hội.
+      </li>
+    </ul>
+
+    <div className="mt-4 p-4 rounded-2xl bg-white/70 border border-red-300 shadow">
+      <div className="text-sm text-red-700 font-semibold">
+        CQ6.3: Đây là những nguy cơ lớn; nếu không ngăn chặn sẽ ảnh hưởng trực tiếp
+        tới <b>uy tín</b>, <b>sức mạnh</b> và <b>sự tồn vong</b> của Đảng.
+      </div>
+    </div>
+  </motion.div>
+</section>
+
+
+{/* 5. Giải pháp & Yêu cầu cấp bách */}
+<section
+  id="giai-phap"
+  className="flex flex-col md:flex-row items-start justify-between my-20 gap-8"
+>
+  {/* Nội dung chính */}
+  <motion.div
+    className="md:w-1/2 md:pr-10 text-center md:text-left"
+    variants={sectionVariants}
+    initial="hidden"
+    whileInView="visible"
+    viewport={{ once: true, amount: 0.5 }}
+  >
+    <FaGavel className="inline-block text-4xl text-[#6e7fdc] mb-4" />
+    <h2 className="text-3xl md:text-4xl font-bold text-[#2a2e6e] mb-4">
+      Giải pháp & Yêu cầu cấp bách
+    </h2>
+
+    <p className="text-gray-700 mb-4">
+      Để ngăn chặn và đẩy lùi tham nhũng, cần triển khai đồng bộ nhiều giải pháp:
+    </p>
+    <ul className="list-disc list-inside text-left text-gray-700 space-y-2">
+      <li>
+        <b>Kiểm soát quyền lực:</b> Xác định cơ chế phân công, phối hợp, kiểm
+        soát giữa các cơ quan từ Trung ương đến địa phương.
+      </li>
+      <li>
+        <b>Trách nhiệm người đứng đầu:</b> Xử lý nghiêm khi để xảy ra tham nhũng
+        trong phạm vi quản lý.
+      </li>
+      <li>
+        <b>Cải cách hành chính:</b> Thực hiện cơ chế “một cửa”, minh bạch hóa thủ
+        tục để ngăn cơ hội nhũng nhiễu.
+      </li>
+      <li>
+        <b>Phát huy vai trò nhân dân:</b> Tạo cơ chế để dân giám sát, bảo vệ
+        người tố cáo, khuyến khích đấu tranh chống tham nhũng.
+      </li>
+      <li>
+        <b>Nêu gương của cán bộ:</b> Lấy phòng ngừa là chính, nhưng xử lý nghiêm
+        minh, không có “vùng cấm”.
+      </li>
+    </ul>
+
+    <div className="mt-6 p-4 rounded-2xl bg-white/70 border border-green-300 shadow">
+      <div className="text-sm text-green-800 font-semibold">
+        CQ6.5: Văn kiện Đại hội XIII của Đảng kế thừa tư tưởng Hồ Chí Minh, nhấn mạnh
+        xây dựng Nhà nước vì dân, coi trọng <b>văn hoá</b>, <b>đạo đức</b>, <b>con người Việt Nam</b> 
+        làm nền tảng cho phát triển bền vững.
+      </div>
+    </div>
+  </motion.div>
+
+  {/* Timeline minh hoạ */}
+  <div className="md:w-1/2 flex justify-center items-center relative">
+    <div className="w-full max-w-md">
+      <div className="relative pl-6">
+        <div className="absolute left-2 top-0 bottom-0 w-1 bg-gradient-to-b from-[#6e7fdc] to-[#2a2e6e] rounded" />
+        {[
+          {
+            year: "Hồ Chí Minh",
+            text: "Nền tảng tư tưởng về dân chủ, đạo đức cách mạng, chống tham nhũng.",
+          },
+          {
+            year: "Đại hội XII",
+            text: "Đẩy mạnh phòng, chống tham nhũng, lãng phí; xây dựng, chỉnh đốn Đảng.",
+          },
+          {
+            year: "Đại hội XIII",
+            text: "Hoàn thiện Nhà nước pháp quyền XHCN; phát huy dân chủ, kiểm soát quyền lực; đề cao văn hoá, đạo đức, con người.",
+          },
+        ].map((item, idx) => (
+          <div key={idx} className="relative mb-6">
+            <div className="absolute -left-1 top-1.5 h-3 w-3 rounded-full bg-white border-2 border-[#6e7fdc]" />
+            <div className="ml-4 p-4 bg-white/70 border border-white/70 rounded-xl shadow">
+              <div className="text-sm font-semibold text-[#2a2e6e]">
+                {item.year}
+              </div>
+              <div className="text-sm text-gray-700">{item.text}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+      </div>
+{/* Conclusion */}
+<motion.div
+  className="container mx-auto px-4 mt-12 text-center"
+  variants={sectionVariants}
+  initial="hidden"
+  whileInView="visible"
+  viewport={{ once: true, amount: 0.5 }}
+>
+  <FaLightbulb className="inline-block text-4xl text-yellow-500 mb-4" />
+  <h2 className="text-3xl md:text-4xl font-bold text-[#2a2e6e] mb-6">
+    Kết luận
+  </h2>
+
+  <p className="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed bg-white/70 p-6 rounded-2xl shadow">
+    Tham nhũng thực sự là <b>“giặc nội xâm”</b>, nguy cơ từ chính nội bộ nếu
+    không <b>kiểm soát quyền lực</b>, không <b>rèn luyện đạo đức cán bộ</b>.{" "}
+    Tư tưởng Hồ Chí Minh và đường lối, nghị quyết của Đảng chính là{" "}
+    <b>kim chỉ nam</b> để xây dựng Đảng, Nhà nước trong sạch, vững mạnh,{" "}
+    <b>củng cố niềm tin của nhân dân</b> và bảo đảm <b>sự tồn vong của chế độ</b>.
+  </p>
+</motion.div>
+
     </div>
   );
 };
 
-export default IntroPage;
+export default IntroPage_HCM;

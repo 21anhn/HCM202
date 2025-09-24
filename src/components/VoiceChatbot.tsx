@@ -1,40 +1,78 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { GeminiClient } from "../services/GeminiClient";
 import { motion, AnimatePresence } from "framer-motion";
 import ReactMarkdown from "react-markdown";
 
+// ⚠️ Khuyến nghị: dùng biến môi trường cho API key
 const gemini = new GeminiClient("AIzaSyBOyExUS1i0kvI7jhV7MuYl1na1nLI4wNg");
 
 const VoiceChatbot: React.FC = () => {
   const [input, setInput] = useState("");
-  const [messages, setMessages] = useState<
-    { role: "user" | "bot"; text: string }[]
-  >([]);
+  const [messages, setMessages] = useState<{ role: "user" | "bot"; text: string }[]>([]);
   const [speaking, setSpeaking] = useState(false);
   const [tab, setTab] = useState<"text" | "voice">("text");
   const [loading, setLoading] = useState(false);
   const [modalText, setModalText] = useState<string | null>(null);
   const [copyText, setCopyText] = useState<string>("Copy");
 
+  // Giữ 1 utterance ref để có thể cancel trước khi nói mới
+  const utterRef = useRef<SpeechSynthesisUtterance | null>(null);
+
   const handleTabChange = (newTab: "text" | "voice") => {
     if (loading) return;
+    // Dừng nói khi đổi tab
+    if (typeof window !== "undefined" && "speechSynthesis" in window) {
+      window.speechSynthesis.cancel();
+      setSpeaking(false);
+    }
     setTab(newTab);
     setInput("");
     setMessages([]);
-    setSpeaking(false);
     setLoading(false);
   };
 
   const speak = (text: string) => {
     if (typeof window !== "undefined" && "speechSynthesis" in window) {
+      // hủy utter trước đó nếu còn
+      window.speechSynthesis.cancel();
       setSpeaking(true);
       const utter = new window.SpeechSynthesisUtterance(text);
       utter.lang = "vi-VN";
       utter.rate = 1;
       utter.onend = () => setSpeaking(false);
+      utter.onerror = () => setSpeaking(false);
+      utterRef.current = utter;
       window.speechSynthesis.speak(utter);
     }
   };
+
+  const baseGuidelines = `
+Bạn là trợ lý học thuật cho *môn Tư tưởng Hồ Chí Minh*. 
+• Cơ sở tham chiếu chính: **Giáo trình Tư tưởng Hồ Chí Minh** (file PDF người dùng đã cung cấp).
+• Nếu câu hỏi nằm ngoài giáo trình, hãy trả lời ngắn gọn theo kiến thức nền tảng, và nói rõ là “nội dung ngoài giáo trình”. Nếu không chắc chắn thì nói “mình chưa có đủ căn cứ trong giáo trình”.
+• Không bịa đặt, không suy diễn quá mức, không đưa số liệu/ trích dẫn nếu không chắc chắn.
+• Trả lời hoàn toàn bằng **tiếng Việt**, ưu tiên **ngắn gọn – súc tích – dễ hiểu**, dùng **Markdown** gọn gàng.
+• Luôn cố gắng chỉ rõ **Chương/Mục** trong giáo trình khi có thể (ví dụ: “Xem Chương 1, mục 1.2”).
+`;
+
+  const textModeInstruction = `
+Trình bày có cấu trúc theo mẫu:
+### Tóm lược nhanh
+- …
+
+### Nội dung chính
+1) …
+2) …
+
+### Tham chiếu giáo trình
+- Chương …, mục … (nếu xác định được)
+`;
+
+  const voiceModeInstruction = `
+Trả lời theo phong cách gần gũi, dễ hiểu; có thể thêm ví dụ đời thường/ngắn, so sánh vui nhưng **không làm mất tính chính xác**.
+Không viết tắt (ví dụ: viết đầy đủ “Chủ nghĩa xã hội”).
+Nếu xác định được, nêu Chương/Mục ở cuối câu trả lời: “(Tham chiếu: Chương …, mục …)”.
+`;
 
   const handleSend = async () => {
     if (!input.trim()) return;
@@ -42,34 +80,30 @@ const VoiceChatbot: React.FC = () => {
     setLoading(true);
 
     try {
-      let prompt =
-        "Bạn hãy dựa vào giáo trình Chủ Nghĩa Xã Hội Khoa Học 2021." +
-        "Nếu câu hỏi thuộc ngoài phạm vi giáo trình, hãy search Google để tìm câu trả lời chính xác nhất. " +
-        "Nếu không tìm thấy câu trả lời trên Google, hãy thẳng thắn nói rằng bạn không biết, đừng cố gắng bịa đặt hoặc tạo ra thông tin sai lệch. " +
-        "Hãy trả lời một cách ngắn gọn, súc tích và dễ hiểu. " +
-        "Nội dung trả lời phải hoàn toàn bằng tiếng Việt. ";
+      let prompt = baseGuidelines;
 
       if (tab === "text") {
-        prompt += `Trả lời câu hỏi này với các yêu cầu phía trên và thêm 1 yêu cầu đặc biệt là thể hiện ở dạng sao cho khi người dùng dễ nhìn nhất các phần nội dung,
-         có thể chỉ rõ các chương trong giáo trình mà bạn tham khảo: 
-${input}`;
+        prompt += `
+${textModeInstruction}
+
+**Câu hỏi của người học**:
+${input}
+`;
       } else {
-        prompt += `Trả lời câu hỏi này theo phong cách gần gũi, dễ hiểu, có thể thêm ví dụ minh họa đời thường hoặc so sánh vui vẻ 
-            để người đọc cảm thấy hứng thú hơn. Tuy nhiên vẫn đảm bảo tính chính xác và đầy đủ nội dung, 
-            không được bỏ sót ý chính trong giáo trình. Không được sử dụng từ viết tắt, 
-            hãy viết đầy đủ tất cả các khái niệm và cụm từ (ví dụ: thay vì CNXH thì phải viết là "Chủ nghĩa xã hội"). 
-            Nếu có thể, hãy chỉ rõ chương trong giáo trình bạn đã tham khảo: 
-            ${input}`;
+        prompt += `
+${voiceModeInstruction}
+
+**Câu hỏi của người học**:
+${input}
+`;
       }
 
       const response = await gemini.ask(prompt);
-
       setMessages((prev) => [...prev, { role: "bot", text: response }]);
 
       if (tab === "voice") {
         speak(response);
       }
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       setMessages((prev) => [
         ...prev,
@@ -89,9 +123,13 @@ ${input}`;
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, delay: 0.2 }}
       >
-        <h2 className="text-2xl font-bold mb-4 text-gray-800 text-center">
-          Chatbot AI Gemini
+        <h2 className="text-2xl font-bold mb-1 text-gray-800 text-center">
+          Chatbot AI – Tư tưởng Hồ Chí Minh
         </h2>
+        <p className="text-center text-gray-500 text-sm mb-4">
+          Ưu tiên trả lời theo <i>Giáo trình Tư tưởng Hồ Chí Minh</i>; có thể nêu rõ Chương/Mục khi trích dẫn.
+        </p>
+
         <div className="flex gap-4 mb-6 justify-center">
           <button
             className={`px-6 py-2 rounded-lg border font-semibold text-lg transition-all duration-200 ${
@@ -122,7 +160,7 @@ ${input}`;
             <>
               {messages.length === 0 && (
                 <div className="text-gray-500 text-center mt-12 text-base select-none">
-                  Hãy hỏi bất kỳ điều gì bạn muốn!
+                  Hãy hỏi bất kỳ điều gì về môn Tư tưởng Hồ Chí Minh!
                 </div>
               )}
               {messages.map((msg, idx) => (
@@ -223,11 +261,7 @@ ${input}`;
                 strokeWidth="2"
                 viewBox="0 0 24 24"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M22 2L11 13"
-                ></path>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M22 2L11 13"></path>
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -253,6 +287,7 @@ ${input}`;
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
+              onClick={(e) => e.stopPropagation()}
             >
               <button
                 className="absolute top-3 right-3 text-gray-500 hover:text-gray-700"
@@ -267,9 +302,11 @@ ${input}`;
                 <button
                   className="px-4 py-2 rounded-lg bg-blue-500 text-white hover:bg-blue-600"
                   onClick={() => {
-                    navigator.clipboard.writeText(modalText);
-                    setCopyText("Copied!");
-                    setTimeout(() => setCopyText("Copy"), 2000);
+                    if (modalText) {
+                      navigator.clipboard.writeText(modalText);
+                      setCopyText("Copied!");
+                      setTimeout(() => setCopyText("Copy"), 2000);
+                    }
                   }}
                 >
                   {copyText}
