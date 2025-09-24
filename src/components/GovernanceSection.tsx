@@ -2,7 +2,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { FaHandshake, FaGavel, FaUsers } from "react-icons/fa";
-import { FaScaleBalanced } from "react-icons/fa6";
+import { FaScaleBalanced, FaFlag } from "react-icons/fa6";
 
 const GovernanceSection: React.FC = () => {
   const itemVariants = {
@@ -25,14 +25,18 @@ const GovernanceSection: React.FC = () => {
         <FaGavel className="inline-block text-[#6e7fdc] mr-3" />
         Nhà nước pháp quyền xã hội chủ nghĩa
       </motion.h2>
+
       <motion.p
         className="text-xl md:text-2xl text-gray-700 mb-8 text-center max-w-3xl mx-auto"
         variants={itemVariants}
         transition={{ delay: 0.2 }}
       >
-        Nhà nước của nhân dân, do nhân dân, vì nhân dân, quản lý xã hội bằng
-        pháp luật.
+        Trong tư tưởng Hồ Chí Minh, Nhà nước pháp quyền xã hội chủ nghĩa là{" "}
+        <span className="font-bold">Nhà nước của dân, do dân, vì dân</span>,
+        quản lý xã hội bằng Hiến pháp và pháp luật, dưới sự lãnh đạo của Đảng
+        Cộng sản Việt Nam.
       </motion.p>
+
       <motion.ul
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         variants={itemVariants}
@@ -43,58 +47,76 @@ const GovernanceSection: React.FC = () => {
           variants={itemVariants}
         >
           <div className="flex items-center text-blue-800 text-xl font-bold mb-3">
-            <FaScaleBalanced className="mr-3 text-2xl" /> Hiến pháp Tối thượng
+            <FaScaleBalanced className="mr-3 text-2xl" /> Hiến pháp tối thượng
           </div>
           <p className="text-gray-600 text-base">
-            Mọi tổ chức và cá nhân đều phải tuân thủ Hiến pháp và pháp luật.
+            Tất cả tổ chức, cá nhân và cơ quan nhà nước đều phải tuân thủ Hiến
+            pháp và pháp luật; không ai đứng trên pháp luật.
           </p>
         </motion.li>
+
         <motion.li
           className="bg-blue-50 p-6 rounded-2xl shadow-lg border-2 border-blue-300 transition-transform hover:scale-105"
           variants={itemVariants}
         >
           <div className="flex items-center text-blue-800 text-xl font-bold mb-3">
-            <FaHandshake className="mr-3 text-2xl" /> Phân công & Phối hợp
+            <FaHandshake className="mr-3 text-2xl" /> Phân công & Kiểm soát
           </div>
           <p className="text-gray-600 text-base">
-            Quyền lực nhà nước thống nhất nhưng có sự phân công, phối hợp và
-            kiểm soát giữa lập pháp, hành pháp và tư pháp.
+            Quyền lực nhà nước là thống nhất nhưng có sự phân công, phối hợp và
+            kiểm soát giữa lập pháp, hành pháp và tư pháp để tránh lạm quyền.
           </p>
         </motion.li>
+
         <motion.li
           className="bg-blue-50 p-6 rounded-2xl shadow-lg border-2 border-blue-300 transition-transform hover:scale-105"
           variants={itemVariants}
         >
           <div className="flex items-center text-blue-800 text-xl font-bold mb-3">
-            <FaUsers className="mr-3 text-2xl" /> Bảo đảm Quyền Công dân
+            <FaUsers className="mr-3 text-2xl" /> Bảo đảm quyền công dân
           </div>
           <p className="text-gray-600 text-base">
-            Nhà nước có trách nhiệm bảo đảm và bảo vệ quyền con người, quyền
-            công dân.
+            Nhà nước có trách nhiệm tôn trọng, bảo vệ và phát huy quyền con
+            người, quyền công dân; thực hiện dân chủ gắn với công bằng xã hội.
           </p>
         </motion.li>
+
         <motion.li
           className="bg-blue-50 p-6 rounded-2xl shadow-lg border-2 border-blue-300 transition-transform hover:scale-105"
           variants={itemVariants}
         >
           <div className="flex items-center text-blue-800 text-xl font-bold mb-3">
-            <FaScaleBalanced className="mr-3 text-2xl" /> Gắn dân chủ với kỷ
-            cương
+            <FaFlag className="mr-3 text-2xl" /> Sự lãnh đạo của Đảng
           </div>
           <p className="text-gray-600 text-base">
-            Thực hiện dân chủ phải đi đôi với tuân thủ kỷ cương, pháp luật, tạo
-            môi trường xã hội ổn định và phát triển.
+            Đảng Cộng sản Việt Nam là lực lượng lãnh đạo Nhà nước và xã hội,
+            bảo đảm Nhà nước đi đúng định hướng xã hội chủ nghĩa.
           </p>
         </motion.li>
+
         <motion.li
           className="bg-blue-50 p-6 rounded-2xl shadow-lg border-2 border-blue-300 transition-transform hover:scale-105"
           variants={itemVariants}
         >
           <div className="flex items-center text-blue-800 text-xl font-bold mb-3">
-            <FaHandshake className="mr-3 text-2xl" /> Phục vụ Phát triển
+            <FaScaleBalanced className="mr-3 text-2xl" /> Dân chủ gắn kỷ cương
           </div>
           <p className="text-gray-600 text-base">
-            Nhà nước phục vụ sự phát triển xã hội công bằng, dân chủ, văn minh.
+            Dân chủ phải đi đôi với kỷ luật, kỷ cương; phát huy quyền làm chủ
+            nhưng giữ vững sự ổn định và phát triển.
+          </p>
+        </motion.li>
+
+        <motion.li
+          className="bg-blue-50 p-6 rounded-2xl shadow-lg border-2 border-blue-300 transition-transform hover:scale-105"
+          variants={itemVariants}
+        >
+          <div className="flex items-center text-blue-800 text-xl font-bold mb-3">
+            <FaHandshake className="mr-3 text-2xl" /> Phục vụ phát triển
+          </div>
+          <p className="text-gray-600 text-base">
+            Nhà nước hướng tới mục tiêu dân giàu, nước mạnh, dân chủ, công bằng,
+            văn minh; vì lợi ích chung của toàn dân tộc.
           </p>
         </motion.li>
       </motion.ul>

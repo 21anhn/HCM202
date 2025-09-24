@@ -1,27 +1,32 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Scale, Users, Gavel, ShieldCheck } from "lucide-react";
+import { Scale, Users, Gavel, ShieldCheck, Flag } from "lucide-react";
 
 const principles = [
   {
-    icon: <Scale className="w-10 h-10 text-blue-600 mb-2" />,
-    title: "Thượng tôn pháp luật",
-    desc: "Mọi tổ chức, cá nhân đều bình đẳng trước pháp luật. Pháp luật là tối thượng trong quản lý xã hội.",
+    icon: <Users className="w-10 h-10 text-green-600 mb-2" />,
+    title: "Quyền lực thuộc về Nhân dân",
+    desc: "Trong tư tưởng Hồ Chí Minh, Nhân dân là chủ thể tối cao của quyền lực; Nhà nước là công cụ để Nhân dân thực hiện quyền làm chủ.",
   },
   {
-    icon: <Users className="w-10 h-10 text-green-600 mb-2" />,
-    title: "Quyền lực thuộc về nhân dân",
-    desc: "Nhân dân là chủ thể tối cao của quyền lực nhà nước, thực hiện quyền lực thông qua các cơ quan dân cử và hình thức dân chủ trực tiếp.",
+    icon: <Scale className="w-10 h-10 text-blue-600 mb-2" />,
+    title: "Thượng tôn Hiến pháp và pháp luật",
+    desc: "Pháp luật giữ vị trí tối thượng trong quản lý xã hội; mọi tổ chức, cá nhân đều bình đẳng trước pháp luật, không ai được đứng trên pháp luật.",
+  },
+  {
+    icon: <Flag className="w-10 h-10 text-red-600 mb-2" />,
+    title: "Sự lãnh đạo của Đảng Cộng sản",
+    desc: "Đảng là nhân tố lãnh đạo quyết định, bảo đảm Nhà nước đi đúng định hướng xã hội chủ nghĩa, đồng thời chịu sự giám sát của Nhân dân.",
   },
   {
     icon: <Gavel className="w-10 h-10 text-yellow-600 mb-2" />,
-    title: "Phân công, kiểm soát quyền lực",
-    desc: "Quyền lực nhà nước được phân công, phối hợp và kiểm soát giữa các cơ quan lập pháp, hành pháp, tư pháp.",
+    title: "Phân công và kiểm soát quyền lực",
+    desc: "Quyền lực nhà nước thống nhất nhưng có sự phân công, phối hợp và kiểm soát giữa lập pháp, hành pháp, tư pháp để tránh lạm quyền.",
   },
   {
     icon: <ShieldCheck className="w-10 h-10 text-purple-600 mb-2" />,
-    title: "Bảo đảm quyền con người, quyền công dân",
-    desc: "Nhà nước pháp quyền XHCN bảo vệ và thúc đẩy quyền con người, quyền công dân, tạo điều kiện phát triển toàn diện cho mọi người.",
+    title: "Dân chủ gắn với kỷ cương",
+    desc: "Thực hiện dân chủ phải đi đôi với giữ vững kỷ luật, kỷ cương; bảo đảm quyền con người, quyền công dân, vì mục tiêu dân giàu, nước mạnh, dân chủ, công bằng, văn minh.",
   },
 ];
 
@@ -35,9 +40,9 @@ const PrincipleSection: React.FC = () => {
         viewport={{ once: true }}
         transition={{ duration: 0.7 }}
       >
-        Nguyên lý cơ bản của Nhà nước pháp quyền XHCN và Dân chủ XHCN
+        Nguyên lý cơ bản theo Tư tưởng Hồ Chí Minh
       </motion.h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl w-full">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl w-full">
         {principles.map((p, i) => (
           <motion.div
             key={i}

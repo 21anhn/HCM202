@@ -3,7 +3,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import {
   FaVoteYea,
-  FaDollarSign,
+  FaBalanceScale,
   FaUniversity,
   FaBuilding,
   FaUsers,
@@ -30,13 +30,16 @@ const DemocracySection: React.FC = () => {
         <FaVoteYea className="inline-block text-green-600 mr-3" />
         Dân chủ xã hội chủ nghĩa
       </motion.h2>
+
       <motion.p
         className="text-xl md:text-2xl text-gray-700 mb-8 text-center max-w-3xl mx-auto"
         variants={itemVariants}
         transition={{ delay: 0.2 }}
       >
-        Bản chất: Quyền lực thuộc về đa số nhân dân lao động.
+        Bản chất: <span className="font-bold">quyền lực thuộc về Nhân dân</span>, do Nhân dân
+        thực hiện và vì lợi ích của Nhân dân lao động.
       </motion.p>
+
       <motion.ul
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         variants={itemVariants}
@@ -50,41 +53,47 @@ const DemocracySection: React.FC = () => {
             <FaBuilding className="mr-3 text-2xl" /> Chính trị
           </div>
           <p className="text-gray-600 text-base">
-            Quyền bầu cử, ứng cử, tham gia quản lý nhà nước và xã hội.
+            Nhân dân có quyền bầu cử, ứng cử, tham gia quản lý nhà nước và xã hội; mọi quyền lực
+            nhà nước đều thuộc về Nhân dân.
           </p>
         </motion.li>
+
         <motion.li
           className="bg-green-50 p-6 rounded-2xl shadow-lg border-2 border-green-300 transition-transform hover:scale-105"
           variants={itemVariants}
         >
           <div className="flex items-center text-green-800 text-xl font-bold mb-3">
-            <FaDollarSign className="mr-3 text-2xl" /> Kinh tế
+            <FaBalanceScale className="mr-3 text-2xl" /> Kinh tế
           </div>
           <p className="text-gray-600 text-base">
-            Quyền lao động, sở hữu và tham gia quyết định sản xuất, kinh doanh.
+            Bảo đảm quyền lao động, quyền sở hữu, quyền hưởng thụ thành quả; dân chủ gắn với
+            công bằng xã hội trong phân phối.
           </p>
         </motion.li>
+
         <motion.li
           className="bg-green-50 p-6 rounded-2xl shadow-lg border-2 border-green-300 transition-transform hover:scale-105"
           variants={itemVariants}
         >
           <div className="flex items-center text-green-800 text-xl font-bold mb-3">
-            <FaUniversity className="mr-3 text-2xl" /> Văn hóa - Xã hội
+            <FaUniversity className="mr-3 text-2xl" /> Văn hóa – Xã hội
           </div>
           <p className="text-gray-600 text-base">
-            Quyền học tập, sáng tạo, tiếp cận và thụ hưởng các giá trị văn hóa.
+            Mọi công dân có quyền học tập, sáng tạo, tiếp cận và thụ hưởng các giá trị văn hóa,
+            được phát triển toàn diện.
           </p>
         </motion.li>
+
         <motion.li
           className="bg-green-50 p-6 rounded-2xl shadow-lg border-2 border-green-300 transition-transform hover:scale-105"
           variants={itemVariants}
         >
           <div className="flex items-center text-green-800 text-xl font-bold mb-3">
-            <FaUsers className="mr-3 text-2xl" /> Hình thức
+            <FaUsers className="mr-3 text-2xl" /> Hình thức thực hiện
           </div>
           <p className="text-gray-600 text-base">
-            Kết hợp dân chủ đại diện (Quốc hội, HĐND) và dân chủ trực tiếp
-            (trưng cầu ý dân).
+            Kết hợp dân chủ đại diện (Quốc hội, HĐND các cấp) với dân chủ trực tiếp
+            (trưng cầu ý dân, đối thoại với Nhân dân).
           </p>
         </motion.li>
       </motion.ul>

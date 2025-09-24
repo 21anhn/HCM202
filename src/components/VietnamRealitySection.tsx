@@ -6,6 +6,7 @@ import {
   FaBalanceScale,
   FaChartLine,
   FaCheckCircle,
+  FaStar,
 } from "react-icons/fa";
 
 const VietnamRealitySection: React.FC = () => {
@@ -29,6 +30,7 @@ const VietnamRealitySection: React.FC = () => {
         <FaGlobeAsia className="inline-block text-yellow-600 mr-3" />
         Liên hệ Thực tiễn Việt Nam
       </motion.h2>
+
       <motion.ul
         className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto"
         variants={itemVariants}
@@ -42,33 +44,48 @@ const VietnamRealitySection: React.FC = () => {
             <FaBalanceScale className="mr-3 text-2xl" /> Hiến pháp 2013
           </div>
           <p className="text-gray-600 text-base">
-            Khẳng định rõ ràng Nhà nước pháp quyền XHCN "của nhân dân, do nhân
-            dân, vì nhân dân."
+            Khẳng định rõ Nhà nước pháp quyền xã hội chủ nghĩa “của Nhân dân, do
+            Nhân dân, vì Nhân dân”, kế thừa tư tưởng Hồ Chí Minh.
           </p>
         </motion.li>
+
         <motion.li
           className="bg-yellow-50 p-6 rounded-2xl shadow-lg border-2 border-yellow-300 transition-transform hover:scale-105"
           variants={itemVariants}
         >
           <div className="flex items-center text-yellow-800 text-xl font-bold mb-3">
-            <FaChartLine className="mr-3 text-2xl" /> Cải cách Tư pháp & Hành
-            chính
+            <FaChartLine className="mr-3 text-2xl" /> Cải cách Tư pháp & Hành chính
           </div>
           <p className="text-gray-600 text-base">
-            Đẩy mạnh Chính phủ điện tử, dịch vụ công trực tuyến để tăng tính
-            minh bạch.
+            Đẩy mạnh Chính phủ điện tử, dịch vụ công trực tuyến, cải cách thủ tục
+            để nâng cao minh bạch, phục vụ Nhân dân tốt hơn.
           </p>
         </motion.li>
+
         <motion.li
           className="bg-yellow-50 p-6 rounded-2xl shadow-lg border-2 border-yellow-300 transition-transform hover:scale-105"
           variants={itemVariants}
         >
           <div className="flex items-center text-yellow-800 text-xl font-bold mb-3">
-            <FaCheckCircle className="mr-3 text-2xl" /> Phòng chống Tham nhũng
+            <FaCheckCircle className="mr-3 text-2xl" /> Phòng chống tham nhũng
           </div>
           <p className="text-gray-600 text-base">
-            Luật Phòng chống tham nhũng (2018) được ban hành, tăng cường minh
-            bạch và xử lý nghiêm các vi phạm.
+            Luật Phòng, chống tham nhũng (2018) cùng nhiều biện pháp thực tiễn đã
+            được triển khai nhằm ngăn chặn “giặc nội xâm” như Hồ Chí Minh từng
+            cảnh báo.
+          </p>
+        </motion.li>
+
+        <motion.li
+          className="bg-yellow-50 p-6 rounded-2xl shadow-lg border-2 border-yellow-300 transition-transform hover:scale-105"
+          variants={itemVariants}
+        >
+          <div className="flex items-center text-yellow-800 text-xl font-bold mb-3">
+            <FaStar className="mr-3 text-2xl" /> Xây dựng Đảng trong sạch
+          </div>
+          <p className="text-gray-600 text-base">
+            Đại hội XIII nhấn mạnh chỉnh đốn Đảng, nâng cao năng lực, phẩm chất
+            cán bộ, gắn bó mật thiết với Nhân dân để củng cố niềm tin.
           </p>
         </motion.li>
       </motion.ul>

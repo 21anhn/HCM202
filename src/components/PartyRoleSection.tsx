@@ -1,7 +1,7 @@
 // src/components/PartyRoleSection.tsx
 import React from "react";
 import { motion } from "framer-motion";
-import { FaStar, FaCogs, FaSitemap, FaHandshake } from "react-icons/fa";
+import { FaStar, FaCogs, FaSitemap, FaHandshake, FaUsers } from "react-icons/fa";
 
 const PartyRoleSection: React.FC = () => {
   const itemVariants = {
@@ -22,8 +22,9 @@ const PartyRoleSection: React.FC = () => {
         variants={itemVariants}
       >
         <FaStar className="inline-block text-red-600 mr-3" />
-        Vai trò lãnh đạo của Đảng Cộng sản
+        Vai trò lãnh đạo của Đảng Cộng sản Việt Nam
       </motion.h2>
+
       <motion.ul
         className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto"
         variants={itemVariants}
@@ -34,13 +35,14 @@ const PartyRoleSection: React.FC = () => {
           variants={itemVariants}
         >
           <div className="flex items-center text-red-800 text-xl font-bold mb-3">
-            <FaSitemap className="mr-3 text-2xl" /> Lãnh đạo Nhà nước và xã hội
+            <FaSitemap className="mr-3 text-2xl" /> Nhân tố lãnh đạo quyết định
           </div>
           <p className="text-gray-600 text-base">
-            Đảng bảo đảm định hướng xã hội chủ nghĩa trong mọi chính sách và
-            hoạt động.
+            Đảng Cộng sản Việt Nam là lực lượng duy nhất lãnh đạo Nhà nước và
+            xã hội, bảo đảm định hướng xã hội chủ nghĩa cho cách mạng Việt Nam.
           </p>
         </motion.li>
+
         <motion.li
           className="bg-red-50 p-6 rounded-2xl shadow-lg border-2 border-red-300 transition-transform hover:scale-105"
           variants={itemVariants}
@@ -49,20 +51,35 @@ const PartyRoleSection: React.FC = () => {
             <FaCogs className="mr-3 text-2xl" /> Xây dựng và Chỉnh đốn
           </div>
           <p className="text-gray-600 text-base">
-            Đảng tự xây dựng và chỉnh đốn để chống tham nhũng, nâng cao năng lực
-            và uy tín lãnh đạo.
+            Đảng phải thường xuyên tự xây dựng, chỉnh đốn, nâng cao năng lực,
+            đạo đức, chống quan liêu, tham nhũng, “giữ Đảng thật trong sạch”.
           </p>
         </motion.li>
+
         <motion.li
           className="bg-red-50 p-6 rounded-2xl shadow-lg border-2 border-red-300 transition-transform hover:scale-105"
           variants={itemVariants}
         >
           <div className="flex items-center text-red-800 text-xl font-bold mb-3">
-            <FaHandshake className="mr-3 text-2xl" /> Đổi mới Phương thức
+            <FaHandshake className="mr-3 text-2xl" /> Đổi mới phương thức lãnh đạo
           </div>
           <p className="text-gray-600 text-base">
-            Đảng tôn trọng nguyên tắc pháp quyền, không bao biện làm thay Nhà
-            nước và phát huy vai trò của các tổ chức xã hội.
+            Đảng lãnh đạo bằng chủ trương, đường lối, tôn trọng nguyên tắc pháp
+            quyền; không bao biện làm thay Nhà nước, phát huy vai trò Mặt trận và
+            các tổ chức chính trị – xã hội.
+          </p>
+        </motion.li>
+
+        <motion.li
+          className="bg-red-50 p-6 rounded-2xl shadow-lg border-2 border-red-300 transition-transform hover:scale-105"
+          variants={itemVariants}
+        >
+          <div className="flex items-center text-red-800 text-xl font-bold mb-3">
+            <FaUsers className="mr-3 text-2xl" /> Gắn bó với Nhân dân
+          </div>
+          <p className="text-gray-600 text-base">
+            Đảng là “đầy tớ trung thành của Nhân dân”, phải giữ mối quan hệ máu
+            thịt với Nhân dân, dựa vào Nhân dân để xây dựng và bảo vệ Tổ quốc.
           </p>
         </motion.li>
       </motion.ul>
