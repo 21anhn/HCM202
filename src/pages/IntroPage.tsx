@@ -80,31 +80,92 @@ function FlipCard({
   bullets: string[];
   quote?: string;
 }) {
+  const line1 = bullets?.[0] || "";
+  const line2 = bullets?.[1] || "";
+  const [flipped, setFlipped] = React.useState(false);
+
   return (
-    <div className="group [perspective:1000px] w-full max-w-sm">
-      <div className="relative h-64 w-full rounded-2xl shadow-xl transition-transform duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] bg-white/70 backdrop-blur-md border border-white/70">
-        {/* Front */}
-        <div className="absolute inset-0 p-5 flex flex-col justify-center items-center [backface-visibility:hidden]">
-          <h3 className="text-xl font-bold text-[#2a2e6e] mb-3 text-center h-12 flex items-center justify-center">
+    <div
+      className="w-full max-w-sm"
+      // perspective đặt ngay wrapper để không bị ancestor “phẳng hóa”
+      style={{ perspective: "1000px" }}
+      onMouseEnter={() => setFlipped(true)}
+      onMouseLeave={() => setFlipped(false)}
+      onClick={() => setFlipped((v) => !v)} // hỗ trợ mobile
+    >
+      <div
+        className={`flip-inner ${flipped ? "is-flipped" : ""}`}
+        style={{
+          position: "relative",
+          height: "16rem",
+          borderRadius: "1rem",
+          transition: "transform 0.6s",
+          transformStyle: "preserve-3d",
+          willChange: "transform",
+        }}
+      >
+        {/* Front: chỉ tiêu đề */}
+        <div
+          className="flip-face"
+          style={{
+            position: "absolute",
+            inset: 0,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            borderRadius: "1rem",
+            background: "rgba(255,255,255,.7)",
+            backdropFilter: "blur(6px)",
+            border: "1px solid rgba(255,255,255,.7)",
+            backfaceVisibility: "hidden",
+            WebkitBackfaceVisibility: "hidden",
+            transform: "rotateY(0deg)",
+          }}
+        >
+          <h3 className="text-xl md:text-2xl font-bold text-[#2a2e6e] text-center leading-snug">
             {title}
           </h3>
-          <ul className="text-sm text-gray-700 list-disc list-inside space-y-1">
-            {bullets.map((b, i) => (
-              <li key={i}>{b}</li>
-            ))}
-          </ul>
-          <div className="mt-4 text-xs text-gray-500 italic"></div>
         </div>
-        {/* Back */}
-        <div className="absolute inset-0 p-5 flex flex-col justify-center items-center [backface-visibility:hidden] [transform:rotateY(180deg)] bg-[#2a2e6e] text-white rounded-2xl">
-          <div className="text-sm leading-relaxed text-center">
-            {quote || "\u2014"}
-          </div>
+
+        {/* Back: đúng 2 dòng giải thích (+ quote nhỏ nếu có) */}
+        <div
+          className="flip-face"
+          style={{
+            position: "absolute",
+            inset: 0,
+            display: "flex",
+            flexDirection: "column",
+            gap: "0.5rem",
+            alignItems: "center",
+            justifyContent: "center",
+            borderRadius: "1rem",
+            color: "#fff",
+            background: "#2a2e6e",
+            backfaceVisibility: "hidden",
+            WebkitBackfaceVisibility: "hidden",
+            transform: "rotateY(180deg)",
+            padding: "1.25rem",
+            textAlign: "center",
+          }}
+        >
+          <p className="text-sm md:text-base leading-relaxed">{line1}</p>
+          {line2 && (
+            <p className="text-sm md:text-base leading-relaxed">{line2}</p>
+          )}
+          {quote && (
+            <p className="mt-2 text-xs opacity-80 italic">{quote}</p>
+          )}
         </div>
       </div>
+
+      {/* CSS nhỏ để bật lật */}
+      <style>{`
+        .flip-inner.is-flipped { transform: rotateY(180deg); }
+      `}</style>
     </div>
   );
 }
+
 
 // ====== Triangle Power Diagram ======
 function PowerTriangle() {
