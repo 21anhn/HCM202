@@ -221,7 +221,8 @@ function PowerTriangle() {
         ))}
 
         {/* Nodes (hover/click để hiện tooltip) */}
-        {nodes.map((n) => (
+        {nodes.map((n) => {  const dy = n.id === "people" ? -6 : 10; // people nằm trên → chữ đặt trên đầu, còn lại chữ dưới
+return( 
           <g
             key={n.id}
             onMouseEnter={() => show(n.id)}
@@ -234,14 +235,15 @@ function PowerTriangle() {
             <circle cx={n.x} cy={n.y} r={5.5} className="fill-[#2a2e6e]" />
             <text
               x={n.x}
-              y={n.y + 8}
+              y={n.y + dy}
               textAnchor="middle"
               className="fill-[#2a2e6e] text-[4px] font-semibold"
             >
               {n.label}
             </text>
           </g>
-        ))}
+            );
+        })}
       </svg>
 
       {/* Tooltip nổi theo node */}
