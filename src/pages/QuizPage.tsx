@@ -22,7 +22,8 @@ const questions: QuizQuestion[] = [
     answerOptions: [
       {
         text: "Hành vi lợi dụng mối quan hệ xã hội để mưu cầu lợi ích cá nhân",
-        rationale: "Sai. Định nghĩa trong luật gắn với người có chức vụ, quyền hạn.",
+        rationale:
+          "Sai. Định nghĩa trong luật gắn với người có chức vụ, quyền hạn.",
         isCorrect: false,
       },
       {
@@ -51,10 +52,26 @@ const questions: QuizQuestion[] = [
     question: "Hồ Chí Minh coi tham ô, lãng phí, quan liêu là gì?",
     imageUrl: null,
     answerOptions: [
-      { text: "Sai lầm trong quản lý", rationale: "Sai. Mức độ không chỉ là sai lầm kỹ thuật.", isCorrect: false },
-      { text: "Hệ quả tất yếu của phát triển kinh tế", rationale: "Sai. Không phải quy luật tất yếu.", isCorrect: false },
-      { text: "Giặc nội xâm", rationale: "Đúng. Người ví đây là kẻ thù nguy hiểm từ bên trong.", isCorrect: true },
-      { text: "Thói quen xấu của cán bộ", rationale: "Sai. Cách nói giản lược, không đúng bản chất nghiêm trọng.", isCorrect: false },
+      {
+        text: "Sai lầm trong quản lý",
+        rationale: "Sai. Mức độ không chỉ là sai lầm kỹ thuật.",
+        isCorrect: false,
+      },
+      {
+        text: "Hệ quả tất yếu của phát triển kinh tế",
+        rationale: "Sai. Không phải quy luật tất yếu.",
+        isCorrect: false,
+      },
+      {
+        text: "Giặc nội xâm",
+        rationale: "Đúng. Người ví đây là kẻ thù nguy hiểm từ bên trong.",
+        isCorrect: true,
+      },
+      {
+        text: "Thói quen xấu của cán bộ",
+        rationale: "Sai. Cách nói giản lược, không đúng bản chất nghiêm trọng.",
+        isCorrect: false,
+      },
     ],
     hint: "Người gọi đây là 'giặc'.",
   },
@@ -63,10 +80,26 @@ const questions: QuizQuestion[] = [
     question: "Theo tư tưởng Hồ Chí Minh, cán bộ nhà nước phải được xem là gì?",
     imageUrl: null,
     answerOptions: [
-      { text: "Người quản lý nhân dân", rationale: "Sai. Không phải đứng 'trên' dân.", isCorrect: false },
-      { text: "Người chủ của dân", rationale: "Sai. Nhân dân mới là chủ.", isCorrect: false },
-      { text: "Người thay mặt Đảng điều hành xã hội", rationale: "Sai. Không phản ánh đầy đủ tinh thần 'vì dân'.", isCorrect: false },
-      { text: "Công bộc của dân", rationale: "Đúng. Cán bộ là đầy tớ, công bộc phục vụ Nhân dân.", isCorrect: true },
+      {
+        text: "Người quản lý nhân dân",
+        rationale: "Sai. Không phải đứng 'trên' dân.",
+        isCorrect: false,
+      },
+      {
+        text: "Người chủ của dân",
+        rationale: "Sai. Nhân dân mới là chủ.",
+        isCorrect: false,
+      },
+      {
+        text: "Người thay mặt Đảng điều hành xã hội",
+        rationale: "Sai. Không phản ánh đầy đủ tinh thần 'vì dân'.",
+        isCorrect: false,
+      },
+      {
+        text: "Công bộc của dân",
+        rationale: "Đúng. Cán bộ là đầy tớ, công bộc phục vụ Nhân dân.",
+        isCorrect: true,
+      },
     ],
     hint: "Từ khóa: công bộc.",
   },
@@ -76,14 +109,26 @@ const questions: QuizQuestion[] = [
       "Tại sao tham nhũng được coi là nguy cơ trực tiếp đe dọa sự tồn vong của Đảng và chế độ?",
     imageUrl: null,
     answerOptions: [
-      { text: "Vì làm giảm uy tín của cán bộ cấp cao", rationale: "Sai. Chỉ là một phần ảnh hưởng.", isCorrect: false },
-      { text: "Vì chỉ gây thất thoát ngân sách", rationale: "Sai. Hậu quả rộng hơn nhiều.", isCorrect: false },
+      {
+        text: "Vì làm giảm uy tín của cán bộ cấp cao",
+        rationale: "Sai. Chỉ là một phần ảnh hưởng.",
+        isCorrect: false,
+      },
+      {
+        text: "Vì chỉ gây thất thoát ngân sách",
+        rationale: "Sai. Hậu quả rộng hơn nhiều.",
+        isCorrect: false,
+      },
       {
         text: "Vì làm xói mòn niềm tin của nhân dân, làm mục ruỗng bộ máy, uy hiếp tính chính danh của chế độ",
         rationale: "Đúng. Đây là tác động sâu rộng và nguy hiểm nhất.",
         isCorrect: true,
       },
-      { text: "Vì chỉ xuất hiện ở một số lĩnh vực nhạy cảm", rationale: "Sai. Có thể phát sinh ở nhiều lĩnh vực quyền lực.", isCorrect: false },
+      {
+        text: "Vì chỉ xuất hiện ở một số lĩnh vực nhạy cảm",
+        rationale: "Sai. Có thể phát sinh ở nhiều lĩnh vực quyền lực.",
+        isCorrect: false,
+      },
     ],
     hint: "Liên hệ tới niềm tin nhân dân.",
   },
@@ -93,15 +138,27 @@ const questions: QuizQuestion[] = [
       "Một trong những yêu cầu cấp bách để phòng, chống tham nhũng theo tư tưởng Hồ Chí Minh là gì?",
     imageUrl: null,
     answerOptions: [
-      { text: "Chỉ dựa vào cơ quan thanh tra, kiểm toán", rationale: "Sai. Không đủ, cần sức dân.", isCorrect: false },
+      {
+        text: "Chỉ dựa vào cơ quan thanh tra, kiểm toán",
+        rationale: "Sai. Không đủ, cần sức dân.",
+        isCorrect: false,
+      },
       {
         text: "Huy động nhân dân tham gia giám sát, bảo vệ người tố cáo",
         rationale:
           "Đúng. Phát huy quyền làm chủ của Nhân dân và bảo vệ người dũng cảm đấu tranh.",
         isCorrect: true,
       },
-      { text: "Chỉ tăng cường xử lý bằng pháp luật", rationale: "Sai. Phòng ngừa và giám sát xã hội cũng rất quan trọng.", isCorrect: false },
-      { text: "Chỉ tập trung vào việc phòng ngừa trong cơ quan trung ương", rationale: "Sai. Cần đồng bộ từ trung ương đến cơ sở.", isCorrect: false },
+      {
+        text: "Chỉ tăng cường xử lý bằng pháp luật",
+        rationale: "Sai. Phòng ngừa và giám sát xã hội cũng rất quan trọng.",
+        isCorrect: false,
+      },
+      {
+        text: "Chỉ tập trung vào việc phòng ngừa trong cơ quan trung ương",
+        rationale: "Sai. Cần đồng bộ từ trung ương đến cơ sở.",
+        isCorrect: false,
+      },
     ],
     hint: "Vai trò nhân dân là then chốt.",
   },
@@ -113,12 +170,25 @@ const questions: QuizQuestion[] = [
     answerOptions: [
       {
         text: "Giữ đạo đức cách mạng, trung thành tuyệt đối, tu dưỡng chống chủ nghĩa cá nhân",
-        rationale: "Đúng. Cốt lõi là đạo đức cách mạng: cần, kiệm, liêm, chính, chí công vô tư.",
+        rationale:
+          "Đúng. Cốt lõi là đạo đức cách mạng: cần, kiệm, liêm, chính, chí công vô tư.",
         isCorrect: true,
       },
-      { text: "Chỉ cần tuân thủ pháp luật", rationale: "Sai. Cần cả tự giác, đạo đức và nêu gương.", isCorrect: false },
-      { text: "Tập trung phát triển kinh tế, không quan tâm đạo đức", rationale: "Sai. Đạo đức là gốc.", isCorrect: false },
-      { text: "Thường xuyên đi công tác nước ngoài", rationale: "Sai. Không liên quan tiêu chí trong sạch, vững mạnh.", isCorrect: false },
+      {
+        text: "Chỉ cần tuân thủ pháp luật",
+        rationale: "Sai. Cần cả tự giác, đạo đức và nêu gương.",
+        isCorrect: false,
+      },
+      {
+        text: "Tập trung phát triển kinh tế, không quan tâm đạo đức",
+        rationale: "Sai. Đạo đức là gốc.",
+        isCorrect: false,
+      },
+      {
+        text: "Thường xuyên đi công tác nước ngoài",
+        rationale: "Sai. Không liên quan tiêu chí trong sạch, vững mạnh.",
+        isCorrect: false,
+      },
     ],
     hint: "Cần, kiệm, liêm, chính, chí công vô tư.",
   },
@@ -128,14 +198,27 @@ const questions: QuizQuestion[] = [
       "Hồ Chí Minh coi bệnh đặc quyền, đặc lợi, tham ô, lãng phí, quan liêu là gì?",
     imageUrl: null,
     answerOptions: [
-      { text: "Vấn đề nhỏ cần quan tâm", rationale: "Sai. Đây là nguy cơ nghiêm trọng.", isCorrect: false },
+      {
+        text: "Vấn đề nhỏ cần quan tâm",
+        rationale: "Sai. Đây là nguy cơ nghiêm trọng.",
+        isCorrect: false,
+      },
       {
         text: "Giặc nội xâm, những xấu xa của chế độ cũ",
-        rationale: "Đúng. Chúng phá hoại từ bên trong nếu không kiên quyết đấu tranh.",
+        rationale:
+          "Đúng. Chúng phá hoại từ bên trong nếu không kiên quyết đấu tranh.",
         isCorrect: true,
       },
-      { text: "Chỉ là sai lầm hành chính", rationale: "Sai. Tác hại sâu rộng hơn hành chính thuần túy.", isCorrect: false },
-      { text: "Không đáng lo ngại", rationale: "Sai. Rất đáng lo và phải chống kiên quyết.", isCorrect: false },
+      {
+        text: "Chỉ là sai lầm hành chính",
+        rationale: "Sai. Tác hại sâu rộng hơn hành chính thuần túy.",
+        isCorrect: false,
+      },
+      {
+        text: "Không đáng lo ngại",
+        rationale: "Sai. Rất đáng lo và phải chống kiên quyết.",
+        isCorrect: false,
+      },
     ],
     hint: "Người gọi đây là giặc nội xâm.",
   },
@@ -147,12 +230,26 @@ const questions: QuizQuestion[] = [
     answerOptions: [
       {
         text: "Chống suy thoái chính trị, đạo đức, lối sống; công tác cán bộ và kiểm soát nội bộ",
-        rationale: "Đúng. Đây là trọng tâm, then chốt để giữ Đảng trong sạch, vững mạnh.",
+        rationale:
+          "Đúng. Đây là trọng tâm, then chốt để giữ Đảng trong sạch, vững mạnh.",
         isCorrect: true,
       },
-      { text: "Chỉ quan tâm kinh tế", rationale: "Sai. Xây dựng Đảng không thể giản lược như vậy.", isCorrect: false },
-      { text: "Tập trung phát triển công nghệ", rationale: "Sai. Công nghệ quan trọng nhưng không thay thế xây dựng Đảng.", isCorrect: false },
-      { text: "Hạn chế kiểm tra giám sát", rationale: "Sai. Cần tăng cường kiểm tra, giám sát.", isCorrect: false },
+      {
+        text: "Chỉ quan tâm kinh tế",
+        rationale: "Sai. Xây dựng Đảng không thể giản lược như vậy.",
+        isCorrect: false,
+      },
+      {
+        text: "Tập trung phát triển công nghệ",
+        rationale:
+          "Sai. Công nghệ quan trọng nhưng không thay thế xây dựng Đảng.",
+        isCorrect: false,
+      },
+      {
+        text: "Hạn chế kiểm tra giám sát",
+        rationale: "Sai. Cần tăng cường kiểm tra, giám sát.",
+        isCorrect: false,
+      },
     ],
     hint: "Đảng nhấn mạnh chính trị, đạo đức, kiểm soát.",
   },
@@ -162,15 +259,27 @@ const questions: QuizQuestion[] = [
       "Khi xây dựng Nhà nước ngang tầm nhiệm vụ trong giai đoạn cách mạng mới, cần đảm bảo những nội dung nào?",
     imageUrl: null,
     answerOptions: [
-      { text: "Chỉ tập trung phát triển kinh tế", rationale: "Sai. Cần hoàn thiện thể chế, pháp quyền.", isCorrect: false },
+      {
+        text: "Chỉ tập trung phát triển kinh tế",
+        rationale: "Sai. Cần hoàn thiện thể chế, pháp quyền.",
+        isCorrect: false,
+      },
       {
         text: "Xây dựng Nhà nước pháp quyền XHCN trong sạch, vững mạnh; hoàn thiện pháp luật và kiểm soát quyền lực",
         rationale:
           "Đúng. Pháp quyền, minh bạch, kiểm soát quyền lực là trụ cột.",
         isCorrect: true,
       },
-      { text: "Không cần minh bạch thủ tục hành chính", rationale: "Sai. Minh bạch là điều kiện then chốt.", isCorrect: false },
-      { text: "Giảm quyền dân tham gia", rationale: "Sai. Phải phát huy quyền làm chủ của Nhân dân.", isCorrect: false },
+      {
+        text: "Không cần minh bạch thủ tục hành chính",
+        rationale: "Sai. Minh bạch là điều kiện then chốt.",
+        isCorrect: false,
+      },
+      {
+        text: "Giảm quyền dân tham gia",
+        rationale: "Sai. Phải phát huy quyền làm chủ của Nhân dân.",
+        isCorrect: false,
+      },
     ],
     hint: "Pháp quyền, pháp luật, kiểm soát quyền lực.",
   },
@@ -179,32 +288,57 @@ const questions: QuizQuestion[] = [
     question: "Tham nhũng xảy ra ở đâu và do ai thực hiện?",
     imageUrl: null,
     answerOptions: [
-      { text: "Ở mọi nơi, do tất cả công dân", rationale: "Sai. Không gắn với mọi công dân.", isCorrect: false },
+      {
+        text: "Ở mọi nơi, do tất cả công dân",
+        rationale: "Sai. Không gắn với mọi công dân.",
+        isCorrect: false,
+      },
       {
         text: "Chỉ ở cơ quan nhà nước, do người có chức vụ, quyền hạn lợi dụng chức vụ, quyền hạn",
         rationale:
           "Đúng. Tham nhũng gắn với người có chức vụ, quyền hạn trong khu vực công.",
         isCorrect: true,
       },
-      { text: "Chỉ trong doanh nghiệp tư nhân", rationale: "Sai. Không phù hợp định nghĩa pháp lý ở VN.", isCorrect: false },
-      { text: "Chỉ xảy ra trong các cơ quan quốc tế", rationale: "Sai.", isCorrect: false },
+      {
+        text: "Chỉ trong doanh nghiệp tư nhân",
+        rationale: "Sai. Không phù hợp định nghĩa pháp lý ở VN.",
+        isCorrect: false,
+      },
+      {
+        text: "Chỉ xảy ra trong các cơ quan quốc tế",
+        rationale: "Sai.",
+        isCorrect: false,
+      },
     ],
     hint: "Tham nhũng gắn với quyền lực.",
   },
   {
     questionNumber: 11,
-    question: "Vì sao Hồ Chí Minh coi tham ô, lãng phí, quan liêu là giặc nội xâm?",
+    question:
+      "Vì sao Hồ Chí Minh coi tham ô, lãng phí, quan liêu là giặc nội xâm?",
     imageUrl: null,
     answerOptions: [
-      { text: "Vì chúng chỉ là những sai lầm hành chính nhỏ", rationale: "Sai. Mức độ nghiêm trọng hơn nhiều.", isCorrect: false },
+      {
+        text: "Vì chúng chỉ là những sai lầm hành chính nhỏ",
+        rationale: "Sai. Mức độ nghiêm trọng hơn nhiều.",
+        isCorrect: false,
+      },
       {
         text: "Vì chúng nằm ngay trong tổ chức, làm thất thoát tài sản, băng hoại đạo đức và uy hiếp sự tồn vong của Đảng",
         rationale:
           "Đúng. Nguy cơ từ bên trong, phá hoại cơ sở đạo đức và tổ chức.",
         isCorrect: true,
       },
-      { text: "Vì chỉ xảy ra trong chế độ cũ", rationale: "Sai. Có thể nảy sinh nếu không phòng ngừa.", isCorrect: false },
-      { text: "Vì chỉ làm giảm thu nhập của nhân dân", rationale: "Sai. Tác hại vượt xa khía cạnh thu nhập.", isCorrect: false },
+      {
+        text: "Vì chỉ xảy ra trong chế độ cũ",
+        rationale: "Sai. Có thể nảy sinh nếu không phòng ngừa.",
+        isCorrect: false,
+      },
+      {
+        text: "Vì chỉ làm giảm thu nhập của nhân dân",
+        rationale: "Sai. Tác hại vượt xa khía cạnh thu nhập.",
+        isCorrect: false,
+      },
     ],
     hint: "Người nói 'nằm ngay trong tổ chức ta'.",
   },
@@ -213,15 +347,27 @@ const questions: QuizQuestion[] = [
     question: "Tham nhũng gây ra hậu quả gì cho xã hội và Nhà nước?",
     imageUrl: null,
     answerOptions: [
-      { text: "Chỉ làm chậm nhịp phát triển kinh tế", rationale: "Sai. Ảnh hưởng cả chính trị, xã hội.", isCorrect: false },
+      {
+        text: "Chỉ làm chậm nhịp phát triển kinh tế",
+        rationale: "Sai. Ảnh hưởng cả chính trị, xã hội.",
+        isCorrect: false,
+      },
       {
         text: "Làm thất thoát kinh tế, mất niềm tin của nhân dân, đe dọa sự tồn vong của Đảng và chế độ",
         rationale:
           "Đúng. Tổng hợp cả tác hại kinh tế lẫn khủng hoảng niềm tin và tính chính danh.",
         isCorrect: true,
       },
-      { text: "Chỉ ảnh hưởng đến một số cán bộ cấp cao", rationale: "Sai. Ảnh hưởng rộng tới toàn hệ thống.", isCorrect: false },
-      { text: "Không gây tác động lâu dài", rationale: "Sai. Tác động kéo dài và hệ lụy sâu.", isCorrect: false },
+      {
+        text: "Chỉ ảnh hưởng đến một số cán bộ cấp cao",
+        rationale: "Sai. Ảnh hưởng rộng tới toàn hệ thống.",
+        isCorrect: false,
+      },
+      {
+        text: "Không gây tác động lâu dài",
+        rationale: "Sai. Tác động kéo dài và hệ lụy sâu.",
+        isCorrect: false,
+      },
     ],
     hint: "Hậu quả cả kinh tế lẫn chính trị.",
   },
@@ -230,15 +376,28 @@ const questions: QuizQuestion[] = [
     question: "Tham nhũng gây tác hại gì về mặt kinh tế?",
     imageUrl: null,
     answerOptions: [
-      { text: "Chỉ ảnh hưởng tới một số doanh nghiệp nhỏ", rationale: "Sai. Tác động toàn bộ môi trường kinh doanh.", isCorrect: false },
+      {
+        text: "Chỉ ảnh hưởng tới một số doanh nghiệp nhỏ",
+        rationale: "Sai. Tác động toàn bộ môi trường kinh doanh.",
+        isCorrect: false,
+      },
       {
         text: "Gây thất thoát, lãng phí nguồn lực quốc gia, làm chậm tốc độ tăng trưởng, méo mó môi trường kinh doanh",
         rationale:
           "Đúng. Tạo chi phí 'ngầm', giảm hiệu quả phân bổ nguồn lực và cạnh tranh lành mạnh.",
         isCorrect: true,
       },
-      { text: "Không ảnh hưởng đến chi phí đầu tư, đấu thầu", rationale: "Sai. Làm tăng chi phí không chính thức, méo cơ chế đấu thầu.", isCorrect: false },
-      { text: "Chỉ gây khó khăn trong quản lý hành chính", rationale: "Sai. Ảnh hưởng vượt ra ngoài phạm vi quản trị.", isCorrect: false },
+      {
+        text: "Không ảnh hưởng đến chi phí đầu tư, đấu thầu",
+        rationale:
+          "Sai. Làm tăng chi phí không chính thức, méo cơ chế đấu thầu.",
+        isCorrect: false,
+      },
+      {
+        text: "Chỉ gây khó khăn trong quản lý hành chính",
+        rationale: "Sai. Ảnh hưởng vượt ra ngoài phạm vi quản trị.",
+        isCorrect: false,
+      },
     ],
     hint: "Liên hệ chi phí ngầm trong đầu tư.",
   },
@@ -247,15 +406,27 @@ const questions: QuizQuestion[] = [
     question: "Tham nhũng tác động như thế nào đến xã hội và chính trị?",
     imageUrl: null,
     answerOptions: [
-      { text: "Chỉ làm thay đổi chính sách hành chính", rationale: "Sai. Tác động sâu tới đạo đức và tổ chức.", isCorrect: false },
+      {
+        text: "Chỉ làm thay đổi chính sách hành chính",
+        rationale: "Sai. Tác động sâu tới đạo đức và tổ chức.",
+        isCorrect: false,
+      },
       {
         text: "Làm băng hoại đạo đức, tạo bất bình trong dân, khoét sâu khoảng cách giàu – nghèo, làm mục ruỗng bộ máy, suy thoái cán bộ, đảng viên, đe dọa sự tồn vong của Đảng và chế độ",
         rationale:
           "Đúng. Đây là hệ quả xã hội–chính trị toàn diện và đặc biệt nghiêm trọng.",
         isCorrect: true,
       },
-      { text: "Chỉ ảnh hưởng tới cá nhân tham nhũng", rationale: "Sai. Hậu quả lan tỏa trong toàn xã hội.", isCorrect: false },
-      { text: "Không gây tác động lâu dài", rationale: "Sai. Di chứng kéo dài, khó khắc phục.", isCorrect: false },
+      {
+        text: "Chỉ ảnh hưởng tới cá nhân tham nhũng",
+        rationale: "Sai. Hậu quả lan tỏa trong toàn xã hội.",
+        isCorrect: false,
+      },
+      {
+        text: "Không gây tác động lâu dài",
+        rationale: "Sai. Di chứng kéo dài, khó khắc phục.",
+        isCorrect: false,
+      },
     ],
     hint: "Nhấn mạnh băng hoại đạo đức, mục ruỗng bộ máy.",
   },
@@ -264,15 +435,27 @@ const questions: QuizQuestion[] = [
     question: "Giải pháp nào được nêu để ngăn chặn và đẩy lùi tham nhũng?",
     imageUrl: null,
     answerOptions: [
-      { text: "Chỉ tăng lương cho cán bộ để họ không tham nhũng", rationale: "Sai. Không giải quyết gốc rễ quyền lực.", isCorrect: false },
+      {
+        text: "Chỉ tăng lương cho cán bộ để họ không tham nhũng",
+        rationale: "Sai. Không giải quyết gốc rễ quyền lực.",
+        isCorrect: false,
+      },
       {
         text: "Kiểm soát quyền lực, trách nhiệm người đứng đầu, cải cách hành chính, phát huy vai trò nhân dân, nêu gương cán bộ",
         rationale:
           "Đúng. Đồng bộ cơ chế kiểm soát – minh bạch – nêu gương – trách nhiệm giải trình.",
         isCorrect: true,
       },
-      { text: "Hạn chế dân giám sát, giảm minh bạch thủ tục", rationale: "Sai. Đi ngược phòng, chống tham nhũng.", isCorrect: false },
-      { text: "Không cần xử lý nghiêm minh, chỉ nhắc nhở", rationale: "Sai. Cần chế tài đủ sức răn đe, 'không có vùng cấm'.", isCorrect: false },
+      {
+        text: "Hạn chế dân giám sát, giảm minh bạch thủ tục",
+        rationale: "Sai. Đi ngược phòng, chống tham nhũng.",
+        isCorrect: false,
+      },
+      {
+        text: "Không cần xử lý nghiêm minh, chỉ nhắc nhở",
+        rationale: "Sai. Cần chế tài đủ sức răn đe, 'không có vùng cấm'.",
+        isCorrect: false,
+      },
     ],
     hint: "Kiểm soát quyền lực và vai trò nhân dân.",
   },
@@ -347,7 +530,9 @@ const Quiz: React.FC = () => {
           <>
             <div className="text-lg font-medium mb-6 text-gray-800 text-center">
               Câu {current + 1}/{questions.length}:<br />
-              <span className="font-semibold">{questions[current].question}</span>
+              <span className="font-semibold">
+                {questions[current].question}
+              </span>
             </div>
 
             <div className="flex flex-col gap-3 mb-6">
@@ -422,7 +607,8 @@ const Quiz: React.FC = () => {
                       <div className="bg-green-50 border-l-4 border-green-500 p-3 rounded">
                         <div className="font-semibold text-green-700 mb-1">
                           Đáp án đúng:&nbsp;
-                          {String.fromCharCode(65 + correctIdx)}. {opts[correctIdx].text}
+                          {String.fromCharCode(65 + correctIdx)}.{" "}
+                          {opts[correctIdx].text}
                         </div>
                         <div className="text-gray-800">
                           {opts[correctIdx].rationale}
@@ -439,7 +625,8 @@ const Quiz: React.FC = () => {
                             if (!op.rationale) return null;
                             // nếu đã nêu “vì sao bạn chọn sai” ở trên thì bỏ qua phương án đã chọn,
                             // tránh lặp lại cùng một rationale
-                            if (!isCorrectAnswer && i === chosenIdx) return null;
+                            if (!isCorrectAnswer && i === chosenIdx)
+                              return null;
                             return (
                               <li key={i}>
                                 <span className="font-medium">
@@ -500,7 +687,9 @@ const Quiz: React.FC = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
           >
-            <div className="text-2xl font-bold text-blue-700 mb-2">Hoàn thành!</div>
+            <div className="text-2xl font-bold text-blue-700 mb-2">
+              Hoàn thành!
+            </div>
             <div className="text-lg mb-4">
               Bạn đúng <span className="text-green-600 font-bold">{score}</span>
               /{questions.length} câu.
@@ -533,7 +722,10 @@ const Quiz: React.FC = () => {
                           {q.answerOptions[findCorrectAnswerIndex(q)].text}
                         </div>
                         <div className="text-gray-600 text-sm italic">
-                          {q.answerOptions[findCorrectAnswerIndex(q)].rationale}
+                          {`Giải thích: ` +
+                            q.answerOptions[
+                              findCorrectAnswerIndex(q)
+                            ].rationale.substring(5)}
                         </div>
                       </li>
                     ) : null

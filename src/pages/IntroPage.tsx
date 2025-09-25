@@ -746,8 +746,8 @@ const IntroPage_HCM: React.FC = () => {
               <div className="text-sm text-green-800 font-semibold">
                 CQ6.5: Văn kiện Đại hội XIII của Đảng kế thừa tư tưởng Hồ Chí
                 Minh, nhấn mạnh xây dựng Nhà nước vì dân, coi trọng{" "}
-                <b>văn hoá</b>, <b>đạo đức</b>, <b>con người Việt Nam</b>
-                làm nền tảng cho phát triển bền vững.
+                <b>văn hoá</b>, <b>đạo đức</b>, <b>con người Việt Nam</b> làm
+                nền tảng cho phát triển bền vững.
               </div>
             </div>
           </motion.div>

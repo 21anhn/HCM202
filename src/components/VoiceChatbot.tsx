@@ -8,7 +8,9 @@ const gemini = new GeminiClient("AIzaSyBOyExUS1i0kvI7jhV7MuYl1na1nLI4wNg");
 
 const VoiceChatbot: React.FC = () => {
   const [input, setInput] = useState("");
-  const [messages, setMessages] = useState<{ role: "user" | "bot"; text: string }[]>([]);
+  const [messages, setMessages] = useState<
+    { role: "user" | "bot"; text: string }[]
+  >([]);
   const [speaking, setSpeaking] = useState(false);
   const [tab, setTab] = useState<"text" | "voice">("text");
   const [loading, setLoading] = useState(false);
@@ -48,7 +50,7 @@ const VoiceChatbot: React.FC = () => {
 
   const baseGuidelines = `
 Bạn là trợ lý học thuật cho *môn Tư tưởng Hồ Chí Minh*. 
-• Cơ sở tham chiếu chính: **Giáo trình Tư tưởng Hồ Chí Minh** (file PDF người dùng đã cung cấp).
+• Cơ sở tham chiếu chính: **Giáo trình Tư tưởng Hồ Chí Minh 2019**.
 • Nếu câu hỏi nằm ngoài giáo trình, hãy trả lời ngắn gọn theo kiến thức nền tảng, và nói rõ là “nội dung ngoài giáo trình”. Nếu không chắc chắn thì nói “mình chưa có đủ căn cứ trong giáo trình”.
 • Không bịa đặt, không suy diễn quá mức, không đưa số liệu/ trích dẫn nếu không chắc chắn.
 • Trả lời hoàn toàn bằng **tiếng Việt**, ưu tiên **ngắn gọn – súc tích – dễ hiểu**, dùng **Markdown** gọn gàng.
@@ -70,7 +72,7 @@ Trình bày có cấu trúc theo mẫu:
 
   const voiceModeInstruction = `
 Trả lời theo phong cách gần gũi, dễ hiểu; có thể thêm ví dụ đời thường/ngắn, so sánh vui nhưng **không làm mất tính chính xác**.
-Không viết tắt (ví dụ: viết đầy đủ “Chủ nghĩa xã hội”).
+Không viết tắt (ví dụ: viết đầy đủ “Chủ nghĩa xã hội”), in đậm các keyword lên.
 Nếu xác định được, nêu Chương/Mục ở cuối câu trả lời: “(Tham chiếu: Chương …, mục …)”.
 `;
 
@@ -92,7 +94,8 @@ ${input}
       } else {
         prompt += `
 ${voiceModeInstruction}
-
+Đối với câu trả lời bằng giọng nói, giới hạn trong khoảng 100 - 150 từ nhưng đảm bảo vẫn đầy đủ các thông tin kèm các so sánh minh họa
+giúp người nghe dễ hiểu, cảm thấy thú vị.
 **Câu hỏi của người học**:
 ${input}
 `;
@@ -104,6 +107,7 @@ ${input}
       if (tab === "voice") {
         speak(response);
       }
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       setMessages((prev) => [
         ...prev,
@@ -127,7 +131,8 @@ ${input}
           Chatbot AI – Tư tưởng Hồ Chí Minh
         </h2>
         <p className="text-center text-gray-500 text-sm mb-4">
-          Ưu tiên trả lời theo <i>Giáo trình Tư tưởng Hồ Chí Minh</i>; có thể nêu rõ Chương/Mục khi trích dẫn.
+          Ưu tiên trả lời theo <i>Giáo trình Tư tưởng Hồ Chí Minh</i>; có thể
+          nêu rõ Chương/Mục khi trích dẫn.
         </p>
 
         <div className="flex gap-4 mb-6 justify-center">
@@ -261,7 +266,11 @@ ${input}
                 strokeWidth="2"
                 viewBox="0 0 24 24"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M22 2L11 13"></path>
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M22 2L11 13"
+                ></path>
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -276,41 +285,52 @@ ${input}
       <AnimatePresence>
         {modalText && (
           <motion.div
-            className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setModalText(null)}
           >
             <motion.div
-              className="bg-white rounded-2xl shadow-xl max-w-3xl w-full max-h-[80vh] overflow-y-auto p-6 relative"
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.8, opacity: 0 }}
+              className="bg-white rounded-2xl shadow-2xl max-w-3xl w-full max-h-[80vh] overflow-y-auto p-6 relative"
+              initial={{ scale: 0.8, opacity: 0, y: 30 }}
+              animate={{
+                scale: 1,
+                opacity: 1,
+                y: 0,
+                transition: { type: "spring", stiffness: 200, damping: 20 },
+              }}
+              exit={{ scale: 0.8, opacity: 0, y: 30 }}
               onClick={(e) => e.stopPropagation()}
             >
-              <button
-                className="absolute top-3 right-3 text-gray-500 hover:text-gray-700"
-                onClick={() => setModalText(null)}
-              >
-                ✖
-              </button>
-              <div className="prose prose-base lg:prose-lg max-w-none">
-                <ReactMarkdown>{modalText}</ReactMarkdown>
-              </div>
-              <div className="mt-4 flex justify-end">
-                <button
-                  className="px-4 py-2 rounded-lg bg-blue-500 text-white hover:bg-blue-600"
-                  onClick={() => {
-                    if (modalText) {
+              {/* Header */}
+              <div className="border-b pb-3 mb-4 flex justify-between items-center">
+                <h2 className="text-xl font-semibold text-gray-800">
+                  Giải thích chi tiết
+                </h2>
+                <div className="flex gap-2">
+                  <button
+                    className="px-3 py-1 text-sm rounded-lg bg-gray-100 hover:bg-gray-200"
+                    onClick={() => {
                       navigator.clipboard.writeText(modalText);
                       setCopyText("Copied!");
                       setTimeout(() => setCopyText("Copy"), 2000);
-                    }
-                  }}
-                >
-                  {copyText}
-                </button>
+                    }}
+                  >
+                    {copyText}
+                  </button>
+                  <button
+                    className="text-gray-400 hover:text-gray-600"
+                    onClick={() => setModalText(null)}
+                  >
+                    ✖
+                  </button>
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="prose prose-lg max-w-none leading-relaxed text-gray-700">
+                <ReactMarkdown>{modalText}</ReactMarkdown>
               </div>
             </motion.div>
           </motion.div>

@@ -30,10 +30,10 @@ const LandingPage: React.FC = () => {
     {
       title: "Mục tiêu học:",
       listItems: [
-        "Hiểu rõ quan điểm Hồ Chí Minh về độc lập dân tộc và CNXH",
-        "Nhận diện vai trò đại đoàn kết dân tộc",
-        "Phân tích tư tưởng về xây dựng Đảng và Nhà nước",
-        "Liên hệ thực tiễn công cuộc đổi mới",
+        "Nhận thức lý luận",
+        "Hiểu về thực tiễn tham nhũng",
+        "Phân tích thách thức hiện nay",
+        "Định hướng giải pháp",
       ],
       actionText: "Bắt đầu học",
     },
