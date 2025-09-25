@@ -8,7 +8,9 @@ const gemini = new GeminiClient("AIzaSyBOyExUS1i0kvI7jhV7MuYl1na1nLI4wNg");
 
 const VoiceChatbot: React.FC = () => {
   const [input, setInput] = useState("");
-  const [messages, setMessages] = useState<{ role: "user" | "bot"; text: string }[]>([]);
+  const [messages, setMessages] = useState<
+    { role: "user" | "bot"; text: string }[]
+  >([]);
   const [speaking, setSpeaking] = useState(false);
   const [tab, setTab] = useState<"text" | "voice">("text");
   const [loading, setLoading] = useState(false);
@@ -48,7 +50,7 @@ const VoiceChatbot: React.FC = () => {
 
   const baseGuidelines = `
 Bạn là trợ lý học thuật cho *môn Tư tưởng Hồ Chí Minh*. 
-• Cơ sở tham chiếu chính: **Giáo trình Tư tưởng Hồ Chí Minh** (file PDF người dùng đã cung cấp).
+• Cơ sở tham chiếu chính: **Giáo trình Tư tưởng Hồ Chí Minh 2019**.
 • Nếu câu hỏi nằm ngoài giáo trình, hãy trả lời ngắn gọn theo kiến thức nền tảng, và nói rõ là “nội dung ngoài giáo trình”. Nếu không chắc chắn thì nói “mình chưa có đủ căn cứ trong giáo trình”.
 • Không bịa đặt, không suy diễn quá mức, không đưa số liệu/ trích dẫn nếu không chắc chắn.
 • Trả lời hoàn toàn bằng **tiếng Việt**, ưu tiên **ngắn gọn – súc tích – dễ hiểu**, dùng **Markdown** gọn gàng.
@@ -92,7 +94,8 @@ ${input}
       } else {
         prompt += `
 ${voiceModeInstruction}
-
+Đối với câu trả lời bằng giọng nói, giới hạn trong khoảng 100 từ nhưng đảm bảo vẫn đầy đủ các thông tin kèm các so sánh minh họa
+giúp người nghe dễ hiểu, cảm thấy thú vị.
 **Câu hỏi của người học**:
 ${input}
 `;
@@ -104,6 +107,7 @@ ${input}
       if (tab === "voice") {
         speak(response);
       }
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       setMessages((prev) => [
         ...prev,
@@ -127,7 +131,8 @@ ${input}
           Chatbot AI – Tư tưởng Hồ Chí Minh
         </h2>
         <p className="text-center text-gray-500 text-sm mb-4">
-          Ưu tiên trả lời theo <i>Giáo trình Tư tưởng Hồ Chí Minh</i>; có thể nêu rõ Chương/Mục khi trích dẫn.
+          Ưu tiên trả lời theo <i>Giáo trình Tư tưởng Hồ Chí Minh</i>; có thể
+          nêu rõ Chương/Mục khi trích dẫn.
         </p>
 
         <div className="flex gap-4 mb-6 justify-center">
@@ -261,7 +266,11 @@ ${input}
                 strokeWidth="2"
                 viewBox="0 0 24 24"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M22 2L11 13"></path>
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M22 2L11 13"
+                ></path>
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
