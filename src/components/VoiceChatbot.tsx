@@ -72,7 +72,7 @@ Trình bày có cấu trúc theo mẫu:
 
   const voiceModeInstruction = `
 Trả lời theo phong cách gần gũi, dễ hiểu; có thể thêm ví dụ đời thường/ngắn, so sánh vui nhưng **không làm mất tính chính xác**.
-Không viết tắt (ví dụ: viết đầy đủ “Chủ nghĩa xã hội”).
+Không viết tắt (ví dụ: viết đầy đủ “Chủ nghĩa xã hội”), in đậm các keyword lên.
 Nếu xác định được, nêu Chương/Mục ở cuối câu trả lời: “(Tham chiếu: Chương …, mục …)”.
 `;
 
@@ -94,7 +94,7 @@ ${input}
       } else {
         prompt += `
 ${voiceModeInstruction}
-Đối với câu trả lời bằng giọng nói, giới hạn trong khoảng 100 từ nhưng đảm bảo vẫn đầy đủ các thông tin kèm các so sánh minh họa
+Đối với câu trả lời bằng giọng nói, giới hạn trong khoảng 100 - 150 từ nhưng đảm bảo vẫn đầy đủ các thông tin kèm các so sánh minh họa
 giúp người nghe dễ hiểu, cảm thấy thú vị.
 **Câu hỏi của người học**:
 ${input}
@@ -285,41 +285,52 @@ ${input}
       <AnimatePresence>
         {modalText && (
           <motion.div
-            className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setModalText(null)}
           >
             <motion.div
-              className="bg-white rounded-2xl shadow-xl max-w-3xl w-full max-h-[80vh] overflow-y-auto p-6 relative"
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.8, opacity: 0 }}
+              className="bg-white rounded-2xl shadow-2xl max-w-3xl w-full max-h-[80vh] overflow-y-auto p-6 relative"
+              initial={{ scale: 0.8, opacity: 0, y: 30 }}
+              animate={{
+                scale: 1,
+                opacity: 1,
+                y: 0,
+                transition: { type: "spring", stiffness: 200, damping: 20 },
+              }}
+              exit={{ scale: 0.8, opacity: 0, y: 30 }}
               onClick={(e) => e.stopPropagation()}
             >
-              <button
-                className="absolute top-3 right-3 text-gray-500 hover:text-gray-700"
-                onClick={() => setModalText(null)}
-              >
-                ✖
-              </button>
-              <div className="prose prose-base lg:prose-lg max-w-none">
-                <ReactMarkdown>{modalText}</ReactMarkdown>
-              </div>
-              <div className="mt-4 flex justify-end">
-                <button
-                  className="px-4 py-2 rounded-lg bg-blue-500 text-white hover:bg-blue-600"
-                  onClick={() => {
-                    if (modalText) {
+              {/* Header */}
+              <div className="border-b pb-3 mb-4 flex justify-between items-center">
+                <h2 className="text-xl font-semibold text-gray-800">
+                  Giải thích chi tiết
+                </h2>
+                <div className="flex gap-2">
+                  <button
+                    className="px-3 py-1 text-sm rounded-lg bg-gray-100 hover:bg-gray-200"
+                    onClick={() => {
                       navigator.clipboard.writeText(modalText);
                       setCopyText("Copied!");
                       setTimeout(() => setCopyText("Copy"), 2000);
-                    }
-                  }}
-                >
-                  {copyText}
-                </button>
+                    }}
+                  >
+                    {copyText}
+                  </button>
+                  <button
+                    className="text-gray-400 hover:text-gray-600"
+                    onClick={() => setModalText(null)}
+                  >
+                    ✖
+                  </button>
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="prose prose-lg max-w-none leading-relaxed text-gray-700">
+                <ReactMarkdown>{modalText}</ReactMarkdown>
               </div>
             </motion.div>
           </motion.div>
