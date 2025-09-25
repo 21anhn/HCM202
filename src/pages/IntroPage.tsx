@@ -167,20 +167,44 @@ function FlipCard({
 }
 
 
-// ====== Triangle Power Diagram ======
+// ====== Triangle Power Diagram (hover to show notes) ======
 function PowerTriangle() {
   const nodes = [
     { id: "people", label: "Nhân dân", x: 50, y: 10 },
     { id: "party", label: "Đảng", x: 10, y: 85 },
     { id: "state", label: "Nhà nước", x: 90, y: 85 },
-  ];
+  ] as const;
+
   const edges = [
     { from: "people", to: "party", text: "Ủy thác niềm tin • giám sát" },
     { from: "party", to: "state", text: "Lãnh đạo • định hướng" },
     { from: "state", to: "people", text: "Phục vụ • bảo đảm quyền" },
   ];
+
+  // ghi chú theo từng nút
+  const notes: Record<(typeof nodes)[number]["id"], string> = {
+    people:
+      "Nhân dân ↔ Đảng: Phê bình, góp ý, kiểm tra đảng viên.\nNhà nước ↔ Nhân dân: Phục vụ lợi ích nhân dân; thực hiện dân chủ, pháp luật nghiêm minh.",
+    party:
+      "Đảng ↔ Nhân dân: Lắng nghe, chịu sự giám sát của dân.\nĐảng ↔ Nhà nước: Lãnh đạo bằng Cương lĩnh, đường lối; tôn trọng pháp quyền.",
+    state:
+      "Nhà nước ↔ Nhân dân: Bảo đảm quyền, phục vụ dân.\nĐảng ↔ Nhà nước: Lãnh đạo – nhưng quyền lực được kiểm soát bởi pháp luật.",
+  };
+
+  const [hover, setHover] = React.useState<{
+    id: (typeof nodes)[number]["id"];
+    x: number;
+    y: number;
+  } | null>(null);
+
+  // tiện hàm khởi tạo hover từ id
+  const show = (id: (typeof nodes)[number]["id"]) => {
+    const n = nodes.find((k) => k.id === id)!;
+    setHover({ id, x: n.x, y: n.y });
+  };
+
   return (
-    <div className="relative w-full max-w-xl aspect-square mx-auto">
+    <div className="relative w-full max-w-xl aspect-square mx-auto select-none">
       <svg viewBox="0 0 100 100" className="w-full h-full">
         {/* Edges */}
         {edges.map((e, i) => (
@@ -195,10 +219,19 @@ function PowerTriangle() {
             />
           </g>
         ))}
-        {/* Nodes */}
+
+        {/* Nodes (hover/click để hiện tooltip) */}
         {nodes.map((n) => (
-          <g key={n.id}>
-            <circle cx={n.x} cy={n.y} r={4.5} className="fill-[#2a2e6e]" />
+          <g
+            key={n.id}
+            onMouseEnter={() => show(n.id)}
+            onMouseLeave={() => setHover(null)}
+            onClick={() =>
+              setHover((h) => (h?.id === n.id ? null : { id: n.id, x: n.x, y: n.y }))
+            } // mobile tap
+            style={{ cursor: "pointer" }}
+          >
+            <circle cx={n.x} cy={n.y} r={5.5} className="fill-[#2a2e6e]" />
             <text
               x={n.x}
               y={n.y + 8}
@@ -210,23 +243,37 @@ function PowerTriangle() {
           </g>
         ))}
       </svg>
-      {/* Hover tooltips (đơn giản bằng legend dưới) */}
-      <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-3 text-sm">
-        <div className="p-3 rounded-xl bg-white/70 border border-white/70 shadow">
-          Nhân dân ↔ Đảng: Phê bình, góp ý, kiểm tra đảng viên.
+
+      {/* Tooltip nổi theo node */}
+      {hover && (
+        <div
+          className="absolute z-20 w-[70%] md:w-[50%] bg-white/90 border border-white/80 shadow-lg rounded-xl p-3 text-sm leading-snug text-[#1f2344] backdrop-blur-md"
+          style={{
+            left: `${hover.x}%`,
+            top: `${hover.y}%`,
+            transform: `translate(-50%, calc(-100% - 10px))`,
+            pointerEvents: "none", // không cản hover svg
+          }}
+        >
+          <div className="font-semibold mb-1">
+            {nodes.find((n) => n.id === hover.id)!.label}
+          </div>
+          <div className="whitespace-pre-line">{notes[hover.id]}</div>
+
+          {/* mũi tên nhỏ */}
+          <div
+            className="absolute left-1/2 w-3 h-3 bg-white/90 border-r border-b border-white/80 rotate-45"
+            style={{
+              bottom: "-6px",
+              transform: "translateX(-50%) rotate(45deg)",
+            }}
+          />
         </div>
-        <div className="p-3 rounded-xl bg-white/70 border border-white/70 shadow">
-          Đảng ↔ Nhà nước: Lãnh đạo bằng Cương lĩnh, đường lối; tôn trọng pháp
-          quyền.
-        </div>
-        <div className="p-3 rounded-xl bg-white/70 border border-white/70 shadow">
-          Nhà nước ↔ Nhân dân: Phục vụ lợi ích nhân dân; thực hiện dân chủ, pháp
-          luật nghiêm minh.
-        </div>
-      </div>
+      )}
     </div>
   );
 }
+
 
 // ====== Demo data (Trực quan hoá số liệu) ======
 const corruptionData = [
